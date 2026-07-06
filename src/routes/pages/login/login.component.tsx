@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { AuthShell } from "@/components/auth-shell"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/primitives"
+import { AuthShell } from "../../../components/auth-shell/auth-shell.component"
+import { Button } from "../../../components/button/button.component"
+import { Input } from "../../../components/primitives/primitives.component"
 import "./login.styles.css"
 
 export const Login = () => {

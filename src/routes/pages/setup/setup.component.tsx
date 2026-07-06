@@ -19,10 +19,10 @@ import {
   Check,
   Cookie,
 } from "lucide-react"
-import { Logo } from "@/components/logo"
-import { Button } from "@/components/ui/button"
-import { Card, Chip, Progress } from "@/components/ui/primitives"
-import { dietaryRules, MAX_SNACKS } from "@/lib/mock-data"
+import { Logo } from "../../../components/logo/logo.components"
+import { Button } from "../../../components/button/button.component"
+import { Card, Chip, Progress } from "../../../components/primitives/primitives.component"
+import { dietaryRules, MAX_SNACKS } from "../../../lib/mock-data"
 import "./setup.styles.css"
 
 const activities = [

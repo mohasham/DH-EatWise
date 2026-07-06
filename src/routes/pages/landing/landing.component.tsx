@@ -9,9 +9,9 @@ import {
   CheckCircle2,
   Check,
 } from "lucide-react"
-import { Logo } from "@/components/logo"
-import { Card, Badge } from "@/components/ui/primitives"
-import { todaysMeals } from "@/lib/mock-data"
+import { Logo } from "../../../components/logo/logo.components"
+import { Card, Badge } from "../../../components/primitives/primitives.component"
+import { todaysMeals } from "../../../lib/mock-data"
 import "./landing.styles.css"
 
 const features = [

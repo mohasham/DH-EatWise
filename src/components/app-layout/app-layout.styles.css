@@ -1,0 +1,177 @@
+.layoutContainer {
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.logoWrapper {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Sidebar Navigation */
+.sidebarNav {
+  margin-top: 32px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.linkActive {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.linkPassive {
+  color: var(--muted-foreground);
+}
+
+.linkPassive:hover {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+/* Desktop Sidebar */
+.desktopAside {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  display: none;
+  width: 256px;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 24px 16px;
+}
+
+/* User Profile Footer in Sidebar */
+.userProfileCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 12px;
+}
+
+.userAvatar {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-foreground);
+}
+
+.userInfo {
+  min-width: 0;
+}
+
+.userName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.userEmail {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* Main Content Area */
+.mainContent {
+  padding-bottom: 96px;
+}
+
+.contentInner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1152px; /* max-w-6xl */
+  padding: 24px 16px;
+}
+
+/* Mobile Bottom Navigation */
+.mobileBottomNav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 8px 8px;
+}
+
+.mobileNavLink {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.mobileLinkActive {
+  color: var(--primary);
+}
+
+.mobileLinkPassive {
+  color: var(--muted-foreground);
+}
+
+/* Responsive Media Queries (lg: 1024px) */
+@media (min-width: 1024px) {
+  .desktopAside {
+    display: flex;
+  }
+  .mainContent {
+    padding-bottom: 0;
+    padding-left: 256px;
+  }
+  .mobileBottomNav {
+    display: none;
+  }
+  .contentInner {
+    padding: 40px 40px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .contentInner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

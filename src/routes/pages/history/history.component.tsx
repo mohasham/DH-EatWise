@@ -11,9 +11,9 @@ import {
   CartesianGrid,
 } from "recharts"
 import { X } from "lucide-react"
-import { Card, Ring, Badge } from "@/components/ui/primitives"
-import { Button } from "@/components/ui/button"
-import { weeklyCalories, recentPlans, todaysMeals, type RecentPlan } from "@/lib/mock-data"
+import { Card, Ring, Badge } from "../../../components/primitives/primitives.component"
+import { Button } from "../../../components/button/button.component"
+import { weeklyCalories, recentPlans, todaysMeals, type RecentPlan } from "../../../lib/mock-data"
 import "./history.styles.css"
 
 const statusTone: Record<string, "success" | "accent" | "neutral"> = {
@@ -52,7 +52,7 @@ export const History = () => {
   const completionRate = Math.round(
     (recentPlans.reduce((s, p) => s + p.completed, 0) /
       recentPlans.reduce((s, p) => s + p.total, 0)) *
-      100,
+    100,
   )
 
   return (
@@ -107,7 +107,7 @@ export const History = () => {
           {cells.map((day, i) => {
             const status = day ? dayStatus[day] : undefined
             const computedDayClass = `day-cell ${day ? "day-cell-active" : ""} ${status ? "day-cell-clickable" : ""}`
-            
+
             return (
               <div
                 key={i}

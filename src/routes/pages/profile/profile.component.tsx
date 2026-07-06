@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { Mail, Lock, Trash2, Pencil } from "lucide-react"
-import { Card, Input, Badge } from "@/components/ui/primitives"
-import { Button } from "@/components/ui/button"
-import { currentUser } from "@/lib/mock-data"
+import { Card, Input, Badge } from "../../../components/primitives/primitives.component"
+import { Button } from "../../../components/button/button.component"
+import { currentUser } from "../../../lib/mock-data"
 import "./profile.styles.css"
 
 export const Profile = () => {

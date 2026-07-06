@@ -1,0 +1,154 @@
+.layoutContainer {
+    min-height: 100vh;
+    background-color: var(--background);
+}
+
+.logoWrapper {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.navContainer {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Nav links basic styling */
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.linkActive {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-foreground);
+}
+
+.linkPassive {
+    color: rgba(var(--sidebar-foreground-rgb), 0.7);
+}
+
+.linkPassive:hover {
+    background-color: rgba(var(--sidebar-accent-rgb), 0.6);
+    color: var(--sidebar-foreground);
+}
+
+/* Desktop Sidebar */
+.desktopAside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+    display: none;
+    width: 256px;
+    flex-direction: column;
+    background-color: var(--sidebar);
+    padding: 24px 16px;
+}
+
+/* Mobile Top Header Bar */
+.mobileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--sidebar);
+    padding: 12px 16px;
+}
+
+.menuBtn,
+.closeBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--sidebar-foreground);
+    display: inline-flex;
+    align-items: center;
+}
+
+.closeBtn {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+}
+
+/* Mobile Drawer Overlay and Sidebar Wrapper */
+.mobileDrawer {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: block;
+}
+
+.drawerOverlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(var(--foreground-rgb), 0.4);
+}
+
+.mobileAside {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 256px;
+    background-color: var(--sidebar);
+    padding: 24px 16px;
+}
+
+/* Main Content Area */
+.mainContent {
+    width: 100%;
+}
+
+.contentInner {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1152px;
+    /* max-w-6xl */
+    padding: 24px 16px;
+}
+
+/* Media Queries for Desktop layout breakdown (lg: 1024px) */
+@media (min-width: 1024px) {
+    .desktopAside {
+        display: flex;
+    }
+
+    .mobileHeader {
+        display: none;
+    }
+
+    .mobileDrawer {
+        display: none;
+    }
+
+    .mainContent {
+        padding-left: 256px;
+    }
+
+    .contentInner {
+        padding: 40px 40px;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    .contentInner {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}

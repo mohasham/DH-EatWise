@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Flame, UtensilsCrossed, Target, CalendarClock, User, Check, Wand2 } from "lucide-react"
-import { Card, Ring, Badge } from "@/components/ui/primitives"
-import { currentUser, todaysMeals as initialMeals } from "@/lib/mock-data"
+import { Card, Ring, Badge } from "../../../components/primitives/primitives.component"
+import { currentUser, todaysMeals as initialMeals } from "../../../lib/mock-data"
 import "./dashboard.styles.css"
 
 const today = new Date().toLocaleDateString("en-US", {
@@ -46,7 +46,7 @@ export const Dashboard = () => {
           </Ring>
           <p className="stat-label-footer">Calories consumed</p>
         </Card>
-        
+
         {stats.map(({ icon: Icon, label, value, unit }) => (
           <Card key={label} className="stat-card-split">
             <div className="stat-icon-wrapper">
@@ -70,7 +70,7 @@ export const Dashboard = () => {
             View full plan
           </Link>
         </div>
-        
+
         <div className="meal-carousel no-scrollbar">
           {meals.map((meal) => (
             <Card key={meal.id} className={`meal-card ${meal.eaten ? "meal-card-eaten" : ""}`}>

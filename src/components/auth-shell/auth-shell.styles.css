@@ -1,0 +1,83 @@
+.shellContainer {
+    display: grid;
+    min-height: 100vh;
+}
+
+/* Left Visual Side Panel (Desktop only) */
+.visualPanel {
+    position: relative;
+    display: none;
+}
+
+.bgImage {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(var(--primary-rgb), 0.7);
+}
+
+.panelContent {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.quoteText {
+    max-width: 384px;
+    /* max-w-sm */
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--primary-foreground);
+    margin: 0;
+}
+
+/* Right Interactive Form Panel */
+.formPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 448px;
+    /* max-w-md */
+}
+
+.mobileLogoWrapper {
+    margin-bottom: 32px;
+}
+
+/* Responsive Media Queries (lg: 1024px) */
+@media (min-width: 1024px) {
+    .shellContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .visualPanel {
+        display: block;
+    }
+
+    .mobileLogoWrapper {
+        display: none;
+    }
+}
+
+@media (min-width: 640px) {
+    .formPanel {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}

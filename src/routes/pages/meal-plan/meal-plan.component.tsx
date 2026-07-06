@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { ChevronLeft, ChevronRight, RefreshCw, Check, ChevronDown, Salad } from "lucide-react"
-import { Card, Badge, Progress } from "@/components/ui/primitives"
-import { Button } from "@/components/ui/button"
-import { currentUser, todaysMeals, buildDayMeals, buildSnacksFromCount } from "@/lib/mock-data"
+import { Card, Badge, Progress } from "../../../components/primitives/primitives.component"
+import { Button } from "../../../components/button/button.component"
+import { currentUser, todaysMeals, buildDayMeals, buildSnacksFromCount } from "../../../lib/mock-data"
 import "./meal-plan.styles.css"
 
 const initialMeals = buildDayMeals(todaysMeals, buildSnacksFromCount(currentUser.snackCount))

@@ -1,0 +1,42 @@
+.logoContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+.iconWrapper {
+    display: inline-flex;
+    height: 32px;
+    width: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+/* Icon Tones */
+.iconPrimary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.iconDark {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+}
+
+/* Text Branding styles */
+.brandText {
+    font-size: 20px;
+    letter-spacing: -0.025em;
+    /* tracking-tight */
+}
+
+/* Text Tones */
+.textPrimary {
+    color: var(--primary);
+}
+
+.textDark {
+    color: var(--sidebar-foreground);
+}
