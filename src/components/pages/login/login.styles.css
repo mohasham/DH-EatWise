@@ -1,0 +1,54 @@
+/* Layout and Spacing Containers */
+.login-header-title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+.login-subtitle {
+  margin-top: 0.5rem;
+  color: var(--muted-foreground);
+}
+
+.login-form-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form Helper Options Row */
+.login-utilities-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forgot-password-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* Footer Switch Form Links */
+.login-footer-redirect {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.login-redirect-link {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.login-redirect-link:hover {
+  text-decoration: underline;
+}

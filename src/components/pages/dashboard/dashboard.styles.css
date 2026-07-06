@@ -1,0 +1,259 @@
+/* Container layout */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 640px) {
+  .dashboard-title {
+    font-size: 1.875rem;
+  }
+}
+
+.dashboard-subtitle {
+  margin-top: 0.25rem;
+  color: var(--muted-foreground);
+}
+
+/* Stats Row Grid */
+.stats-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Ring Stat Card */
+.stat-card-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+.ring-text-primary {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.ring-text-sub {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+
+.stat-label-footer {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* Row-based Cards */
+.stat-card-split {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.stat-icon-wrapper {
+  display: flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.stat-content-block {
+  margin-top: 1.5rem;
+}
+
+.stat-text-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.stat-text-value {
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.stat-text-unit {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* Today's Meal Plan Section */
+.section-header-row {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-title-sm {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.section-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.section-link:hover {
+  text-decoration: underline;
+}
+
+/* Horizontal Meal Carousel */
+.meal-carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.meal-card {
+  width: 15rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, outline 0.2s ease;
+}
+
+/* Dynamic State Modifier for Eaten Card */
+.meal-card-eaten {
+  outline: 2px solid var(--success);
+}
+
+.meal-image {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+}
+
+.meal-body {
+  padding: 1rem;
+}
+
+.meal-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meal-time-stamp {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.meal-name-heading {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.meal-action-row {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meal-calories {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.meal-calories-unit {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* Checkmark Toggle Button */
+.btn-check-toggle {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-check-toggle:hover {
+  border-color: var(--primary);
+}
+
+/* Active Checked State Modifier */
+.btn-check-active {
+  border-color: var(--success);
+  background-color: var(--success);
+  color: var(--success-foreground);
+}
+
+/* Quick Links Grid */
+.quick-links-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .quick-links-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.quick-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.quick-link-card:hover {
+  background-color: rgba(var(--muted), 0.5);
+}
+
+.quick-link-title {
+  font-weight: 600;
+}
+
+.quick-link-desc {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}

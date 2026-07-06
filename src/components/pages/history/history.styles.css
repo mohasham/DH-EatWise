@@ -1,0 +1,309 @@
+/* Container Layout */
+.history-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.history-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 640px) {
+  .history-title {
+    font-size: 1.875rem;
+  }
+}
+
+.history-subtitle {
+  margin-top: 0.25rem;
+  color: var(--muted-foreground);
+}
+
+/* Dashboard Analytics Grid */
+.analytics-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .analytics-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.chart-card {
+  padding: 1.5rem;
+}
+
+.chart-title {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Completion Rate Card */
+.rate-card-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+}
+
+.rate-card-title {
+  font-weight: 700;
+}
+
+.rate-pct {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.rate-sub {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.rate-footer-text {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Calendar Element Box */
+.calendar-card {
+  padding: 1.5rem;
+}
+
+.calendar-header-title {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.calendar-weekdays-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.25rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+
+.weekday-cell {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.calendar-days-grid {
+  margin-top: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+
+.day-cell {
+  display: flex;
+  aspect-ratio: 1 / 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.day-cell-active {
+  color: var(--foreground);
+}
+
+.day-cell-clickable {
+  cursor: pointer;
+}
+
+.day-cell-clickable:hover {
+  background-color: var(--muted);
+}
+
+/* Calendar Day Indicators */
+.day-dot {
+  margin-top: 0.25rem;
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 9999px;
+}
+
+.dot-completed { background-color: var(--success); }
+.dot-partial { background-color: var(--accent); }
+.dot-skipped { background-color: rgba(107, 106, 99, 0.4); }
+
+.calendar-legend-row {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.legend-circle {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+}
+
+/* Recent Plans List Section */
+.section-heading-sm {
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.plans-vertical-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.plan-row-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.plan-info-block {
+  min-width: 8rem;
+  flex: 1 1 0%;
+}
+
+.plan-info-title {
+  font-weight: 600;
+}
+
+.plan-info-sub {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.plan-meta-meals {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.plan-badge-status {
+  text-transform: capitalize;
+}
+
+/* Side Drawer Overlay Panel */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer-scrim {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(26, 26, 24, 0.4);
+}
+
+.drawer-content-box {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  max-width: 28rem;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: var(--card);
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.drawer-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.drawer-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+.drawer-subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.drawer-items-list {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.drawer-meal-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+}
+
+.drawer-meal-thumb {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.drawer-meal-info {
+  min-width: 0;
+  flex: 1 1 0%;
+}
+
+.drawer-meal-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.drawer-meal-meta {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.drawer-meal-kcal {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--primary);
+}

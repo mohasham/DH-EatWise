@@ -1,0 +1,423 @@
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import {
+  Mars,
+  Venus,
+  Armchair,
+  Footprints,
+  Bike,
+  Dumbbell,
+  TrendingDown,
+  Scale,
+  Plus,
+  HeartPulse,
+  Minus,
+  X,
+  ArrowLeft,
+  ArrowRight,
+  Wand2,
+  Check,
+  Cookie,
+} from "lucide-react"
+import { Logo } from "@/components/logo"
+import { Button } from "@/components/ui/button"
+import { Card, Chip, Progress } from "@/components/ui/primitives"
+import { cn } from "@/lib/utils"
+import { dietaryRules, MAX_SNACKS } from "@/lib/mock-data"
+
+const activities = [
+  { id: "sedentary", label: "Sedentary", icon: Armchair },
+  { id: "light", label: "Lightly Active", icon: Footprints },
+  { id: "moderate", label: "Moderately Active", icon: Bike },
+  { id: "very", label: "Very Active", icon: Dumbbell },
+]
+const goals = [
+  { id: "loss", label: "Weight Loss", icon: TrendingDown },
+  { id: "maintain", label: "Maintenance", icon: Scale },
+  { id: "gain", label: "Muscle Gain", icon: Dumbbell },
+  { id: "condition", label: "Condition Management", icon: HeartPulse },
+]
+const conditionsList = ["Diabetes", "Hypertension", "Heart Disease", "Celiac", "Lactose Intolerance", "None"]
+const dietList = ["Vegan", "Vegetarian", "Keto", "Halal", "Gluten-Free", "Paleo"]
+
+function Field({
+  label,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className="text-sm font-medium text-muted-foreground">{label}</span>
+      <input
+        className="h-12 rounded-xl border border-input bg-card px-4 text-[15px] outline-none focus:border-primary focus:ring-2 focus:ring-ring/30"
+        {...props}
+      />
+    </label>
+  )
+}
+
+function SelectCard({
+  active,
+  icon: Icon,
+  label,
+  onClick,
+}: {
+  active: boolean
+  icon: React.ElementType
+  label: string
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "flex flex-col items-center gap-2 rounded-2xl border-2 p-4 text-sm font-semibold transition-all",
+        active
+          ? "border-primary bg-secondary text-primary"
+          : "border-border bg-card text-muted-foreground hover:border-primary/40",
+      )}
+    >
+      <Icon size={26} />
+      <span className="text-center leading-tight">{label}</span>
+    </button>
+  )
+}
+
+function TagInput({
+  label,
+  tags,
+  setTags,
+  placeholder,
+}: {
+  label: string
+  tags: string[]
+  setTags: (t: string[]) => void
+  placeholder: string
+}) {
+  const [value, setValue] = useState("")
+  function add() {
+    const v = value.trim()
+    if (v && !tags.includes(v)) setTags([...tags, v])
+    setValue("")
+  }
+  return (
+    <div>
+      <span className="text-sm font-medium text-muted-foreground">{label}</span>
+      <div className="mt-1.5 flex gap-2">
+        <input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.nativeEvent.isComposing) {
+              e.preventDefault()
+              add()
+            }
+          }}
+          placeholder={placeholder}
+          className="h-11 flex-1 rounded-xl border border-input bg-card px-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-ring/30"
+        />
+        <Button type="button" variant="subtle" size="icon" onClick={add} aria-label="Add">
+          <Plus size={18} />
+        </Button>
+      </div>
+      {tags.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <span
+              key={t}
+              className="inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1 text-sm font-medium text-primary"
+            >
+              {t}
+              <button type="button" onClick={() => setTags(tags.filter((x) => x !== t))} aria-label={`Remove ${t}`}>
+                <X size={14} />
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function RuleCheckbox({
+  active,
+  label,
+  description,
+  onClick,
+}: {
+  active: boolean
+  label: string
+  description: string
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={active}
+      onClick={onClick}
+      className={cn(
+        "flex items-start gap-3 rounded-2xl border-2 p-4 text-left transition-all",
+        active ? "border-primary bg-secondary" : "border-border bg-card hover:border-primary/40",
+      )}
+    >
+      <span
+        className={cn(
+          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-colors",
+          active ? "border-primary bg-primary text-primary-foreground" : "border-input bg-card",
+        )}
+      >
+        {active && <Check size={14} strokeWidth={3} />}
+      </span>
+      <span>
+        <span className={cn("block text-sm font-semibold", active ? "text-primary" : "text-foreground")}>{label}</span>
+        <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">{description}</span>
+      </span>
+    </button>
+  )
+}
+
+function SnacksSection({
+  count,
+  setCount,
+}: {
+  count: number
+  setCount: (n: number) => void
+}) {
+  return (
+    <div>
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <span className="text-sm font-medium text-muted-foreground">Snacks Between Meals</span>
+          <p className="text-xs text-muted-foreground">
+            Just pick how many. Your plan automatically times each snack around meals and workouts.
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={() => setCount(Math.max(0, count - 1))}
+            disabled={count === 0}
+            aria-label="Decrease snacks"
+          >
+            <Minus size={18} />
+          </Button>
+          <span className="w-8 text-center text-2xl font-extrabold text-primary">{count}</span>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={() => setCount(Math.min(MAX_SNACKS, count + 1))}
+            disabled={count >= MAX_SNACKS}
+            aria-label="Increase snacks"
+          >
+            <Plus size={18} />
+          </Button>
+        </div>
+      </div>
+      <p className="mt-3 flex items-center gap-2 rounded-xl bg-secondary/60 px-3 py-2 text-xs leading-relaxed text-primary">
+        <Cookie size={14} className="shrink-0" />
+        {count === 0
+          ? "No snacks between meals."
+          : `${count} snack${count > 1 ? "s" : ""} will be spread across your day with full recipes.`}
+      </p>
+    </div>
+  )
+}
+
+export default function Setup() {
+  const navigate = useNavigate()
+  const [step, setStep] = useState(1)
+  const total = 4
+
+  const [gender, setGender] = useState("")
+  const [activity, setActivity] = useState("")
+  const [goal, setGoal] = useState("")
+  const [conditions, setConditions] = useState<string[]>([])
+  const [diets, setDiets] = useState<string[]>([])
+  const [preferred, setPreferred] = useState<string[]>([])
+  const [forbidden, setForbidden] = useState<string[]>([])
+  const [meals, setMeals] = useState(4)
+  const [activeRules, setActiveRules] = useState<string[]>([])
+  const [snackCount, setSnackCount] = useState(0)
+
+  function toggle(list: string[], setList: (v: string[]) => void, item: string) {
+    setList(list.includes(item) ? list.filter((x) => x !== item) : [...list, item])
+  }
+
+  function next() {
+    if (step < total) setStep(step + 1)
+    else navigate("/dashboard")
+  }
+  function back() {
+    if (step > 1) setStep(step - 1)
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border bg-card">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4 sm:px-6">
+          <Logo />
+          <span className="text-sm text-muted-foreground">Step {step} of {total}</span>
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+        <Progress value={(step / total) * 100} className="mb-8" />
+
+        <Card className="p-6 sm:p-8">
+          {step === 1 && (
+            <div className="flex flex-col gap-6">
+              <div>
+                <h2 className="text-2xl font-bold">Basic Info</h2>
+                <p className="mt-1 text-muted-foreground">Let&apos;s start with the essentials.</p>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Gender</span>
+                <div className="mt-1.5 grid grid-cols-2 gap-3">
+                  <SelectCard active={gender === "male"} icon={Mars} label="Male" onClick={() => setGender("male")} />
+                  <SelectCard active={gender === "female"} icon={Venus} label="Female" onClick={() => setGender("female")} />
+                </div>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-3">
+                <Field label="Age" type="number" placeholder="29" />
+                <Field label="Weight (kg)" type="number" placeholder="64" />
+                <Field label="Height (cm)" type="number" placeholder="168" />
+              </div>
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Activity Level</span>
+                <div className="mt-1.5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {activities.map((a) => (
+                    <SelectCard key={a.id} active={activity === a.id} icon={a.icon} label={a.label} onClick={() => setActivity(a.id)} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {step === 2 && (
+            <div className="flex flex-col gap-6">
+              <div>
+                <h2 className="text-2xl font-bold">Health &amp; Diet</h2>
+                <p className="mt-1 text-muted-foreground">Your goals and health context.</p>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Goal</span>
+                <div className="mt-1.5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {goals.map((g) => (
+                    <SelectCard key={g.id} active={goal === g.id} icon={g.icon} label={g.label} onClick={() => setGoal(g.id)} />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Medical Conditions</span>
+                <div className="mt-1.5 flex flex-wrap gap-2">
+                  {conditionsList.map((c) => (
+                    <Chip key={c} active={conditions.includes(c)} onClick={() => toggle(conditions, setConditions, c)}>
+                      {c}
+                    </Chip>
+                  ))}
+                </div>
+              </div>
+              <TagInput label="Allergies" tags={forbidden} setTags={setForbidden} placeholder="e.g. Peanuts, Shellfish" />
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Dietary Rules</span>
+                <p className="mb-1.5 text-xs text-muted-foreground">
+                  Choose the rules you want applied to every generated meal plan.
+                </p>
+                <div className="grid gap-2.5 sm:grid-cols-2">
+                  {dietaryRules.map((rule) => (
+                    <RuleCheckbox
+                      key={rule.id}
+                      active={activeRules.includes(rule.id)}
+                      label={rule.label}
+                      description={rule.description}
+                      onClick={() => toggle(activeRules, setActiveRules, rule.id)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {step === 3 && (
+            <div className="flex flex-col gap-6">
+              <div>
+                <h2 className="text-2xl font-bold">Food Preferences</h2>
+                <p className="mt-1 text-muted-foreground">Tell us what you love and avoid.</p>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Dietary Preference</span>
+                <div className="mt-1.5 flex flex-wrap gap-2">
+                  {dietList.map((d) => (
+                    <Chip key={d} active={diets.includes(d)} onClick={() => toggle(diets, setDiets, d)}>
+                      {d}
+                    </Chip>
+                  ))}
+                </div>
+              </div>
+              <TagInput label="Preferred Foods" tags={preferred} setTags={setPreferred} placeholder="e.g. Salmon, Spinach" />
+              <TagInput label="Forbidden Foods" tags={forbidden} setTags={setForbidden} placeholder="e.g. Mushrooms" />
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Meals Per Day</span>
+                <div className="mt-1.5 flex items-center gap-4">
+                  <Button type="button" variant="outline" size="icon" onClick={() => setMeals(Math.max(2, meals - 1))} aria-label="Decrease">
+                    <Minus size={18} />
+                  </Button>
+                  <span className="w-8 text-center text-2xl font-extrabold text-primary">{meals}</span>
+                  <Button type="button" variant="outline" size="icon" onClick={() => setMeals(Math.min(6, meals + 1))} aria-label="Increase">
+                    <Plus size={18} />
+                  </Button>
+                </div>
+              </div>
+              <SnacksSection count={snackCount} setCount={setSnackCount} />
+            </div>
+          )}
+
+          {step === 4 && (
+            <div className="flex flex-col gap-6">
+              <div>
+                <h2 className="text-2xl font-bold">Daily Schedule</h2>
+                <p className="mt-1 text-muted-foreground">We&apos;ll time your meals around your day.</p>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Wake Time" type="time" defaultValue="07:00" />
+                <Field label="Sleep Time" type="time" defaultValue="23:00" />
+                <Field label="Work Start" type="time" defaultValue="09:00" />
+                <Field label="Work End" type="time" defaultValue="17:00" />
+                <Field label="Study Start" type="time" defaultValue="19:00" />
+                <Field label="Study End" type="time" defaultValue="21:00" />
+              </div>
+              <div>
+                <span className="text-sm font-medium text-muted-foreground">Your day at a glance</span>
+                <div className="mt-2 flex h-10 overflow-hidden rounded-xl">
+                  <div className="flex items-center justify-center bg-accent/30 text-xs font-medium" style={{ width: "20%" }}>Morning</div>
+                  <div className="flex items-center justify-center bg-primary/20 text-xs font-medium" style={{ width: "35%" }}>Work</div>
+                  <div className="flex items-center justify-center bg-secondary text-xs font-medium text-primary" style={{ width: "20%" }}>Study</div>
+                  <div className="flex items-center justify-center bg-muted text-xs font-medium" style={{ width: "25%" }}>Rest</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-8 flex items-center justify-between gap-3">
+            <Button type="button" variant="outline" onClick={back} disabled={step === 1}>
+              <ArrowLeft size={18} /> Back
+            </Button>
+            {step < total ? (
+              <Button type="button" onClick={next}>
+                Next <ArrowRight size={18} />
+              </Button>
+            ) : (
+              <Button type="button" variant="accent" onClick={next}>
+                <Wand2 size={18} /> Generate My Plan
+              </Button>
+            )}
+          </div>
+        </Card>
+      </div>
+    </div>
+  )
+}

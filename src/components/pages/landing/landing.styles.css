@@ -1,0 +1,390 @@
+/* Layout and Structural Containers */
+.landing-page {
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.max-width-container {
+  max-width: 72rem; /* max-w-6xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .max-width-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Header & Navigation Navbar */
+.landing-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgba(var(--border), 0.7);
+  background-color: rgba(var(--background), 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .navbar-actions {
+    gap: 0.75rem;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  align-items: center;
+  gap: 3rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-title-highlight {
+  color: var(--primary);
+}
+
+.hero-description {
+  margin-top: 1.25rem;
+  max-width: 28rem;
+  font-size: 1.125rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.hero-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-bullets-row {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+  row-gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.hero-bullet-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* Mockup Display Card Overlay */
+.mockup-media-wrapper {
+  position: relative;
+}
+
+.mockup-hero-img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  box-shadow: 0 24px 60px -20px rgba(15, 110, 86, 0.35);
+}
+
+.mockup-floating-card {
+  position: absolute;
+  bottom: -1.5rem;
+  left: -0.5rem;
+  width: 14rem;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .mockup-floating-card {
+    left: -1.5rem;
+  }
+}
+
+.progress-track-bg {
+  margin-top: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--muted);
+}
+
+.progress-fill-accent {
+  height: 100%;
+  width: 75%;
+  border-radius: 9999px;
+  background-color: var(--accent);
+}
+
+/* Shared Sections Header Text styling */
+.text-center-wrapper {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-main-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 640px) {
+  .section-main-heading {
+    font-size: 2.25rem;
+  }
+}
+
+.section-tag-subtext {
+  margin-top: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* Features Grid */
+.features-grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.feature-box-icon {
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.feature-card-title {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.feature-card-desc {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+/* Workflow - How It Works Section */
+.workflow-section {
+  background-color: rgba(var(--secondary), 0.4);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.workflow-grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .workflow-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.workflow-badge-index {
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.workflow-icon-box {
+  display: flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Sample Meal Plan Preview Grid */
+.preview-section-grid {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .preview-section-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .preview-section-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.preview-img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+}
+
+.preview-body-container {
+  padding: 1rem;
+}
+
+.preview-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.preview-time-info {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.preview-title-heading {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.preview-kcal-value {
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.preview-kcal-unit {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.preview-footer-action {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* Footer Element Area */
+.landing-footer {
+  border-top: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.footer-inner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .footer-inner-content {
+    flex-direction: row;
+  }
+}
+
+.footer-navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 1.5rem;
+  row-gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.footer-navbar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-navbar a:hover {
+  color: var(--foreground);
+}
+
+.footer-copy-info {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}

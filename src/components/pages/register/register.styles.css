@@ -1,0 +1,48 @@
+/* Header styling */
+.register-header-title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+.register-subtitle {
+  margin-top: 0.5rem;
+  color: var(--muted-foreground);
+}
+
+/* Form Container Layout */
+.register-form-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Error Banner Box */
+.register-error-banner {
+  border-radius: 0.5rem;
+  background-color: rgba(216, 90, 48, 0.1); /* --destructive at 10% opacity */
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--destructive);
+}
+
+/* Footer Redirect Row */
+.register-footer-redirect {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.register-redirect-link {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.register-redirect-link:hover {
+  text-decoration: underline;
+}

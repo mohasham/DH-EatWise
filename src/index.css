@@ -1,0 +1,85 @@
+/* Custom Global Variables & Brand Palette */
+:root {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand Colors */
+  --background: #f8f7f2;
+  --foreground: #1a1a18;
+
+  --card: #ffffff;
+  --card-foreground: #1a1a18;
+
+  --popover: #ffffff;
+  --popover-foreground: #1a1a18;
+
+  --primary: #0f6e56;
+  --primary-foreground: #ffffff;
+
+  --accent: #e8a838;
+  --accent-foreground: #1a1a18;
+
+  --secondary: #eef2ef;
+  --secondary-foreground: #0f6e56;
+
+  --muted: #eef0ea;
+  --muted-foreground: #6b6a63;
+
+  --success: #3dab7a;
+  --success-foreground: #ffffff;
+
+  --destructive: #d85a30;
+  --destructive-foreground: #ffffff;
+
+  --border: #e7e5dc;
+  --input: #e7e5dc;
+  --ring: #0f6e56;
+
+  --sidebar: #0f6e56;
+  --sidebar-foreground: #eaf3ef;
+  --sidebar-accent: #0b5844;
+  --sidebar-border: #1a7d63;
+
+  /* Border Radii */
+  --radius: 0.875rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Global Reset Definitions */
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* Custom Scrollbar Helper Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

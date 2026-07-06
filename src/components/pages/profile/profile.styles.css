@@ -1,0 +1,176 @@
+/* Container Layout */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .profile-title {
+    font-size: 1.875rem;
+  }
+}
+
+/* Profile Header Card */
+.profile-header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .profile-header-card {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+.avatar-initials {
+  display: flex;
+  height: 5rem;
+  width: 5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-foreground);
+}
+
+.profile-header-info {
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .profile-header-info {
+    text-align: left;
+  }
+}
+
+.user-name-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.user-email-text {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
+.member-since-tag {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Two-Column Grid Setup */
+.profile-split-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .profile-split-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.settings-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.settings-heading {
+  margin: 0;
+  font-weight: 700;
+}
+
+.password-divider-row {
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+}
+
+/* Danger Zone Callout */
+.danger-zone-box {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(216, 90, 48, 0.3); /* --destructive color placeholder */
+  background-color: rgba(216, 90, 48, 0.05);
+  padding: 1rem;
+}
+
+.danger-zone-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--destructive);
+}
+
+.danger-zone-desc {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Health Summary Component Block */
+.health-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.health-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.stat-metric-pill {
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 1rem;
+}
+
+.stat-metric-label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.stat-metric-val {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+.conditions-label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.conditions-cloud {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.no-conditions-text {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
