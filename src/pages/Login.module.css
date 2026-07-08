@@ -1,0 +1,40 @@
+.title {
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+.subtitle {
+  margin-top: 0.5rem;
+  color: var(--color-muted-foreground);
+}
+.form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.forgotRow {
+  display: flex;
+  justify-content: flex-end;
+}
+.forgotLink {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+.forgotLink:hover {
+  text-decoration: underline;
+}
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+.footerLink {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+.footerLink:hover {
+  text-decoration: underline;
+}

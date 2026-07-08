@@ -1,0 +1,251 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+.subtitle {
+  margin-top: 0.25rem;
+  color: var(--color-muted-foreground);
+}
+
+/* ---------------- Top grid ---------------- */
+.topGrid {
+  display: grid;
+  gap: 1.5rem;
+}
+.trendCard {
+  padding: 1.5rem;
+}
+.completionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+}
+.cardHeading {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.completionHeading {
+  font-weight: 700;
+}
+.ringValue {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+.ringSub {
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+}
+.completionCaption {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+
+/* ---------------- Calendar ---------------- */
+.calendarCard {
+  padding: 1.5rem;
+}
+.weekHead {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.25rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-muted-foreground);
+}
+.weekHeadCell {
+  padding-block: 0.5rem;
+}
+.calGrid {
+  margin-top: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+.calCell {
+  display: flex;
+  aspect-ratio: 1 / 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+.calCellFilled {
+  color: var(--color-foreground);
+}
+.calCellActive {
+  cursor: pointer;
+}
+.calCellActive:hover {
+  background-color: var(--color-muted);
+}
+.dot {
+  margin-top: 0.25rem;
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 9999px;
+}
+.dotCompleted {
+  background-color: var(--color-success);
+}
+.dotPartial {
+  background-color: var(--color-accent);
+}
+.dotSkipped {
+  background-color: color-mix(in srgb, var(--color-muted-foreground) 40%, transparent);
+}
+.legend {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.legendDot {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+}
+
+/* ---------------- Recent plans ---------------- */
+.sectionTitle {
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.planList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.planCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.planMain {
+  min-width: 8rem;
+  flex: 1;
+}
+.planLabel {
+  font-weight: 600;
+}
+.planCal {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+.planMeals {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* ---------------- Side panel ---------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: flex-end;
+}
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+}
+.panel {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  max-width: 28rem;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: var(--color-card);
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panelTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.panelSub {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+.panelList {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.panelRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+}
+.panelImg {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+.panelRowMain {
+  min-width: 0;
+  flex: 1;
+}
+.panelRowName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.panelRowMeta {
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+}
+.panelRowCal {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+@media (min-width: 1024px) {
+  .topGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .trendCard {
+    grid-column: span 2 / span 2;
+  }
+}

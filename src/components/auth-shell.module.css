@@ -1,0 +1,68 @@
+.shell {
+  display: grid;
+  min-height: 100vh;
+}
+
+.visual {
+  position: relative;
+  display: none;
+}
+.image {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+}
+.visualContent {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem;
+}
+.quote {
+  max-width: 24rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.375;
+  color: var(--color-primary-foreground);
+}
+
+.formPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+}
+.formInner {
+  width: 100%;
+  max-width: 28rem;
+}
+.mobileLogo {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .formPanel {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .visual {
+    display: block;
+  }
+  .mobileLogo {
+    display: none;
+  }
+}

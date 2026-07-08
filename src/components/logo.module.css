@@ -1,0 +1,30 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.mark {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+.markDark {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+.name {
+  font-size: 1.25rem;
+  letter-spacing: -0.025em;
+  color: var(--color-primary);
+}
+.nameDark {
+  color: var(--color-sidebar-foreground);
+}

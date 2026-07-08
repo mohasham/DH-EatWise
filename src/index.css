@@ -1,0 +1,149 @@
+:root {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette */
+  --color-background: #f8f7f2;
+  --color-foreground: #1a1a18;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a18;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1a18;
+
+  --color-primary: #0f6e56;
+  --color-primary-foreground: #ffffff;
+
+  --color-accent: #e8a838;
+  --color-accent-foreground: #1a1a18;
+
+  --color-secondary: #eef2ef;
+  --color-secondary-foreground: #0f6e56;
+
+  --color-muted: #eef0ea;
+  --color-muted-foreground: #6b6a63;
+
+  --color-success: #3dab7a;
+  --color-success-foreground: #ffffff;
+
+  --color-destructive: #d85a30;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #e7e5dc;
+  --color-input: #e7e5dc;
+  --color-ring: #0f6e56;
+
+  --color-sidebar: #0f6e56;
+  --color-sidebar-foreground: #eaf3ef;
+  --color-sidebar-accent: #0b5844;
+  --color-sidebar-border: #1a7d63;
+
+  --radius: 0.875rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ---------------- Reset ---------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--color-border);
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  tab-size: 4;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-muted-foreground);
+  opacity: 1;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: none;
+}
+
+/* ---------------- Animations ---------------- */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Thin scrollbar for horizontal scroll rows */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

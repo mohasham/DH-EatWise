@@ -1,0 +1,256 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.date {
+  margin-top: 0.25rem;
+  color: var(--color-muted-foreground);
+}
+
+/* ---------------- Stats row ---------------- */
+.statsGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.ringCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+.ringValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.ringSub {
+  font-size: 11px;
+  color: var(--color-muted-foreground);
+}
+
+.ringCaption {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted-foreground);
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.statIcon {
+  display: flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.statBody {
+  margin-top: 1.5rem;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+
+.statValue {
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.statUnit {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted-foreground);
+}
+
+/* ---------------- Section header ---------------- */
+.sectionHead {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.viewLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.viewLink:hover {
+  text-decoration: underline;
+}
+
+.quickTitle {
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* ---------------- Meal cards row ---------------- */
+.mealRow {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.mealCard {
+  width: 15rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+}
+
+.mealCardEaten {
+  box-shadow: 0 0 0 2px var(--color-success);
+}
+
+.mealImg {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+}
+
+.mealBody {
+  padding: 1rem;
+}
+
+.mealTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mealTime {
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+}
+
+.mealName {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.mealBottom {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mealCal {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.mealCalUnit {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-muted-foreground);
+}
+
+.checkBtn {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid var(--color-border);
+  color: var(--color-muted-foreground);
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.checkBtn:hover {
+  border-color: var(--color-primary);
+}
+
+.checkBtnEaten {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+  color: var(--color-success-foreground);
+}
+
+.checkBtnEaten:hover {
+  border-color: var(--color-success);
+}
+
+/* ---------------- Quick links ---------------- */
+.linksGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.linkCard:hover {
+  background-color: color-mix(in srgb, var(--color-muted) 50%, transparent);
+}
+
+.linkLabel {
+  font-weight: 600;
+}
+
+.linkText {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 1.875rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .linksGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
