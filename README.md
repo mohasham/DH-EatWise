@@ -2,8 +2,6 @@
 
 AI-powered meal planning app that generates personalized, day-by-day meal plans based on a user's health profile, dietary needs, and admin-defined nutrition rules.
 
-![Landing Page](screenshots/landing.png)
-
 ## Overview
 
 EatWise replaces static, one-size-fits-all meal suggestions with real AI generation. Users complete a health profile (goals, allergies, activity level, schedule), and the app uses Groq's LLM API to generate a full day of meals — complete with calories, ingredients, step-by-step recipes — tailored to that profile and any dietary rules an admin has configured.
