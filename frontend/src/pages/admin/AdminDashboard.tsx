@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Users, UtensilsCrossed, ScrollText, UserPlus, Eye } from "lucide-react"
 import { Card, Badge } from "../../components/ui/primitives"
 import { usersApi, rulesApi, mealPlansApi, type ApiUser, type ApiRule } from "../../lib/api"
-import { cn } from "../../lib/utils"
+import { cn, toLocalDateString } from "../../lib/utils"
 import styles from "./AdminDashboard.module.css"
 
 export default function AdminDashboard() {
@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const today = new Date().toISOString().split("T")[0]
+    const today = toLocalDateString(new Date())
     Promise.all([
       usersApi.getAll(),
       rulesApi.getAll(),
@@ -23,7 +23,7 @@ export default function AdminDashboard() {
         setRules(rulesRes.data.rules)
         setTodayCount(plansRes.results)
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false))
   }, [])
 
@@ -46,7 +46,7 @@ export default function AdminDashboard() {
 
   const stats = [
     { icon: Users, label: "Total Users", value: loading ? "..." : users.length.toLocaleString() },
-//{ icon: UtensilsCrossed, label: "Plans Generated Today", value: loading ? "..." : todayCount.toLocaleString() },
+    //{ icon: UtensilsCrossed, label: "Plans Generated Today", value: loading ? "..." : todayCount.toLocaleString() },
     { icon: ScrollText, label: "Active Rules", value: loading ? "..." : activeRules.length.toString() },
     { icon: UserPlus, label: "New This Week", value: loading ? "..." : newThisWeek.toString() },
   ]

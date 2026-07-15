@@ -3,16 +3,19 @@
   font-weight: 800;
   letter-spacing: -0.025em;
 }
+
 .subtitle {
   margin-top: 0.5rem;
   color: var(--color-muted-foreground);
 }
+
 .form {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 .error {
   border-radius: 0.5rem;
   background-color: color-mix(in srgb, var(--color-destructive) 10%, transparent);
@@ -21,16 +24,31 @@
   font-weight: 500;
   color: var(--color-destructive);
 }
+
 .footer {
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.875rem;
   color: var(--color-muted-foreground);
 }
+
 .footerLink {
   font-weight: 600;
   color: var(--color-primary);
 }
+
 .footerLink:hover {
   text-decoration: underline;
+}
+
+
+.disclaimer {
+  margin-top: 1.25rem;
+  border-radius: 0.5rem;
+  background-color: color-mix(in srgb, var(--color-muted-foreground) 8%, transparent);
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--color-muted-foreground);
+  text-align: center;
 }

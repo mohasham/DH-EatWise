@@ -15,6 +15,11 @@ export interface MealInput {
   recipe?: string[];
 }
 
+export interface MealPlanInput {
+  date: string;
+  status?: 'active' | 'completed' | 'skipped';
+}
+
 /**
  * Return all meal plans for a user, optionally filtered by date range.
  * Admin can pass a userId; a regular user always gets only their own plans.
@@ -134,4 +139,24 @@ export const syncTotalCalories = async (mealPlanId: Types.ObjectId): Promise<voi
 
   const total = result[0]?.total ?? 0;
   await MealPlan.findByIdAndUpdate(mealPlanId, { totalCalories: total });
+};
+
+// ---- Synchronize plan status after a meal's completed flag changes ----
+// If every (non-deleted) meal in the plan is completed, mark the plan completed.
+// If the plan was completed and a meal gets un-checked, revert it to active.
+// Never touches plans a user has explicitly marked 'skipped'.
+export const syncPlanStatus = async (mealPlanId: Types.ObjectId): Promise<void> => {
+  const plan = await MealPlan.findById(mealPlanId);
+  if (!plan || plan.status === 'skipped') return;
+
+  const meals = await Meal.find({ mealPlanId, deletedAt: null }).select('completed');
+  if (meals.length === 0) return;
+
+  const allCompleted = meals.every((m) => m.completed);
+  const nextStatus = allCompleted ? 'completed' : 'active';
+
+  if (plan.status !== nextStatus) {
+    plan.status = nextStatus;
+    await plan.save();
+  }
 };

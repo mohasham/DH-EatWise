@@ -5,7 +5,7 @@ import { Card, Ring, Badge } from "../components/ui/primitives"
 import { Button } from "../components/ui/button"
 import { mealPlansApi, healthProfileApi, type ApiMeal, type ApiMealPlan, type ApiHealthProfile } from "../lib/api"
 import { useAuth } from "../lib/auth-context"
-import { cn } from "../lib/utils"
+import { cn, toLocalDateString } from "../lib/utils"
 import styles from "./Dashboard.module.css"
 
 const today = new Date().toLocaleDateString("en-US", {
@@ -14,7 +14,7 @@ const today = new Date().toLocaleDateString("en-US", {
   day: "numeric",
 })
 
-const todayDateStr = new Date().toISOString().split("T")[0]
+const todayDateStr = toLocalDateString(new Date())
 
 type MealWithLocal = ApiMeal & { _localEaten?: boolean }
 

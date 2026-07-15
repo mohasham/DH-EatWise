@@ -4,11 +4,11 @@ import { Card, Badge, Progress } from "../components/ui/primitives"
 import { Button } from "../components/ui/button"
 import { mealPlansApi, mealsApi, type ApiMealPlan, type ApiMeal } from "../lib/api"
 import { useAuth } from "../lib/auth-context"
-import { cn } from "../lib/utils"
+import { cn, toLocalDateString } from "../lib/utils"
 import styles from "./MealPlan.module.css"
 
 function toDateString(d: Date) {
-  return d.toISOString().split("T")[0]
+  return toLocalDateString(d)
 }
 
 function formatDate(d: Date) {
@@ -38,6 +38,8 @@ export default function MealPlan() {
   const [generating, setGenerating] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
+  const [pendingToggles, setPendingToggles] = useState<Set<string>>(new Set())
+
 
   const date = new Date()
   date.setDate(date.getDate() + offset)
@@ -97,13 +99,32 @@ export default function MealPlan() {
   }
 
   async function toggleMeal(meal: ApiMeal) {
+
+    if (pendingToggles.has(meal._id)) return
+    setPendingToggles((prev) => new Set(prev).add(meal._id))
+    // Optimistic update: flip the UI instantly instead of waiting on the network.
+    setMeals((prev) =>
+      prev.map((m) => (m._id === meal._id ? { ...m, completed: !m.completed } : m))
+    )
     try {
       const res = await mealsApi.toggleComplete(meal._id)
+      // Reconcile with the server's actual value (in case something else changed it).
       setMeals((prev) =>
         prev.map((m) => (m._id === res.data.meal._id ? res.data.meal : m))
       )
     } catch {
-      // silently fail — optimistic update not applied
+      // Request failed — revert the optimistic change.
+      setMeals((prev) =>
+        prev.map((m) => (m._id === meal._id ? { ...m, completed: meal.completed } : m)))
+      setError("Failed to update meal. Please try again.")
+    } finally {
+      // Always release the lock, whether the request succeeded or failed,
+      // so the button becomes clickable again for this meal.
+      setPendingToggles((prev) => {
+        const next = new Set(prev)
+        next.delete(meal._id)
+        return next
+      })
     }
   }
 

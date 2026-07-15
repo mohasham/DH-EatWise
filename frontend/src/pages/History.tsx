@@ -12,7 +12,7 @@ import { X } from "lucide-react"
 import { Card, Ring, Badge } from "../components/ui/primitives"
 import { Button } from "../components/ui/button"
 import { mealPlansApi, type ApiMealPlan, type ApiMeal } from "../lib/api"
-import { cn } from "../lib/utils"
+import { cn, toLocalDateString } from "../lib/utils"
 import styles from "./History.module.css"
 
 const statusTone: Record<string, "success" | "accent" | "neutral"> = {
@@ -37,7 +37,7 @@ function toISO(year: number, month: number, day: number) {
 }
 
 function toDateString(d: Date) {
-  return d.toISOString().split("T")[0]
+  return toLocalDateString(d)
 }
 
 export default function History() {
@@ -58,7 +58,7 @@ export default function History() {
     const endDate = toISO(year, month, daysInMonth)
     mealPlansApi.getAll({ startDate, endDate })
       .then((res) => setPlans(res.data.plans))
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false))
   }, [year, month])
 
