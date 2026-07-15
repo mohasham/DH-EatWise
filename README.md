@@ -115,55 +115,6 @@ Open the printed local URL (typically `http://localhost:5173`).
 3. Go to **Meal Plan** and click **Generate Plan**
 4. As admin, visit **Admin → Rules** to add dietary rules, and **Admin → Users** to manage accounts
 
-## Screenshots
-
-### Landing Page
-![Landing](screenshots/landing.png)
-
-### Register
-![Register](screenshots/register.png)
-
-### Login
-![Login](screenshots/login.png)
-
-### Setup Wizard — Basic Info
-![Setup Step 1](screenshots/setup-1.png)
-
-### Setup Wizard — Health & Diet
-![Setup Step 2](screenshots/setup-2.png)
-
-### Setup Wizard — Food Preferences
-![Setup Step 3](screenshots/setup-3.png)
-
-### Setup Wizard — Schedule
-![Setup Step 4](screenshots/setup-4.png)
-
-### Dashboard
-![Dashboard](screenshots/dashboard.png)
-
-### Meal Plan (Generated)
-![Meal Plan](screenshots/meal-plan.png)
-
-### Meal Plan — Expanded Recipe
-![Meal Plan Recipe](screenshots/meal-plan-recipe.png)
-
-### History — Weekly Trend & Calendar
-![History](screenshots/history.png)
-
-### History — Day Detail Panel
-![History Detail](screenshots/history-detail.png)
-
-### Profile
-![Profile](screenshots/profile.png)
-
-### Admin Dashboard
-![Admin Dashboard](screenshots/admin-dashboard.png)
-
-### Admin — Dietary Rules
-![Admin Rules](screenshots/admin-rules.png)
-
-### Admin — Users
-![Admin Users](screenshots/admin-users.png)
 
 ## API Overview
 
