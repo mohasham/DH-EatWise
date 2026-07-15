@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 import Meal, { IMeal } from '../models/meal.model';
 import MealPlan from '../models/mealPlan.model';
 import AppError from '../utils/AppError';
-import { syncTotalCalories } from './mealPlan.service';
+import { syncTotalCalories, syncPlanStatus } from './mealPlan.service';
 
 export interface MealInput {
   type: 'breakfast' | 'lunch' | 'dinner' | 'snack';
@@ -103,6 +103,11 @@ export const toggleMealCompleted = async (
 
   meal.completed = !meal.completed;
   await meal.save();
+
+  // Keep the plan's status in sync: all meals eaten -> 'completed',
+  // otherwise back to 'active' (unless the plan was explicitly 'skipped').
+  await syncPlanStatus(plan._id as Types.ObjectId);
+
   return meal;
 };
 

@@ -60,6 +60,12 @@ export default function Register() {
           </Button>
         </form>
 
+        <p className={styles.disclaimer}>
+          Meal plans are generated using AI and may not be fully accurate. If you have
+          any medical conditions, allergies, or dietary restrictions, please consult
+          your doctor before following any plan.
+        </p>
+
         <p className={styles.footer}>
           Already have an account?{" "}
           <Link to="/login" className={styles.footerLink}>
