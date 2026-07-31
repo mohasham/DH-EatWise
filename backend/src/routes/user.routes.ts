@@ -1,10 +1,14 @@
 import { Router } from 'express';
-import { getAllUsers, getUserById, updateUser, deleteUser } from '../controllers/user.controller';
+import { getAllUsers, getUserById, updateUser, updateMe, deleteUser, deleteMe } from '../controllers/user.controller';
 import { protect, restrictTo } from '../middlewares/auth.middleware';
-import { updateUserValidator, mongoIdParam } from '../validators/user.validator';
+import { updateUserValidator, updateMeValidator, mongoIdParam } from '../validators/user.validator';
 import { validate } from '../middlewares/validate.middleware';
 
 const router = Router();
+
+// Authenticated user can update their own name/email or delete their account
+router.patch('/me', protect, updateMeValidator, validate, updateMe);
+router.delete('/me', protect, deleteMe);
 
 // All user management routes are admin-only
 router.use(protect, restrictTo('admin'));

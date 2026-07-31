@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import catchAsync from '../utils/catchAsync';
 import { createSendToken } from '../utils/jwt';
-import { registerUser, loginUser } from '../services/auth.service';
+import { registerUser, loginUser, changeUserPassword } from '../services/auth.service';
+import { AuthRequest } from '../types';
 
 /**
  * POST /api/auth/register
@@ -36,3 +37,14 @@ export const logout = (_req: Request, res: Response): void => {
 
   res.status(200).json({ status: 'success', message: 'Logged out successfully' });
 };
+
+/**
+ * PATCH /api/auth/change-password
+ * Verifies the current password, then sets a new one.
+ */
+export const changePassword = catchAsync(async (req: AuthRequest, res: Response) => {
+  const { currentPassword, newPassword } = req.body;
+  await changeUserPassword({ userId: req.user!._id, currentPassword, newPassword });
+
+  res.status(200).json({ status: 'success', message: 'Password changed successfully' });
+});

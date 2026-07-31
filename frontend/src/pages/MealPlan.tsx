@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react"
 import { ChevronLeft, ChevronRight, RefreshCw, Check, ChevronDown, Salad, Zap } from "lucide-react"
 import { Card, Badge, Progress } from "../components/ui/primitives"
 import { Button } from "../components/ui/button"
+import MealImage from "../components/MealImage"
 import { mealPlansApi, mealsApi, type ApiMealPlan, type ApiMeal } from "../lib/api"
 import { useAuth } from "../lib/auth-context"
 import { cn, toLocalDateString } from "../lib/utils"
@@ -27,6 +28,39 @@ function formatTime12h(time: string): string {
 const timingLabel: Record<string, string> = {
   pre_workout: "Pre-Workout",
   post_workout: "Post-Workout",
+}
+
+const MAIN_MEALS: ApiMeal["type"][] = ["breakfast", "lunch", "dinner"]
+
+function toMinutes(time: string): number {
+  const [h, m] = time.split(":").map(Number)
+  return h * 60 + m
+}
+
+/** Where a snack falls relative to the day's main meals, e.g. "Pre-Breakfast". */
+function snackPlacementLabel(meal: ApiMeal, meals: ApiMeal[]): string | null {
+  if (meal.type !== "snack") return null
+  if (meal.timing === "pre_workout") return "Pre-Workout"
+  if (meal.timing === "post_workout") return "Post-Workout"
+
+  const main = meals
+    .filter((m) => MAIN_MEALS.includes(m.type))
+    .sort((a, b) => toMinutes(a.time) - toMinutes(b.time))
+  if (main.length === 0) return null
+
+  const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+  const snackMin = toMinutes(meal.time)
+  const prev = [...main].reverse().find((m) => toMinutes(m.time) <= snackMin)
+  const next = main.find((m) => toMinutes(m.time) > snackMin)
+
+  if (!prev && next) return `Pre-${cap(next.type)}`
+  if (prev && !next) return `Post-${cap(prev.type)}`
+  if (prev && next) {
+    return toMinutes(next.time) - snackMin < snackMin - toMinutes(prev.time)
+      ? `Pre-${cap(next.type)}`
+      : `Post-${cap(prev.type)}`
+  }
+  return null
 }
 
 export default function MealPlan() {
@@ -177,22 +211,22 @@ export default function MealPlan() {
           {/* Meal list */}
           <div className={styles.mealList}>
             {meals.map((meal) => {
+              const snackLabel = snackPlacementLabel(meal, meals)
               return (
                 <Card key={meal._id} className={cn(styles.mealCard, meal.completed && styles.mealCardEaten)}>
                   <div className={styles.mealInner}>
-                    {meal.imgUrl ? (
-                      <img src={meal.imgUrl} alt={meal.name} className={styles.mealImg} />
-                    ) : (
-                      <div className={styles.mealImgPlaceholder}>
-                        <Salad size={28} />
-                      </div>
-                    )}
+                    <MealImage src={meal.imgUrl} alt={meal.name} type={meal.type} className={styles.mealImg} />
                     <div className={styles.mealMain}>
                       <div className={styles.mealTags}>
                         <Badge tone="primary">{meal.type}</Badge>
-                        {meal.timing !== "none" && (
+                        {meal.type !== "snack" && meal.timing !== "none" && (
                           <Badge tone="accent" className={styles.workoutBadge}>
                             <Zap size={11} /> {timingLabel[meal.timing]}
+                          </Badge>
+                        )}
+                        {snackLabel && (
+                          <Badge tone="accent" className={styles.snackBadge}>
+                            {snackLabel}
                           </Badge>
                         )}
                         <span className={styles.mealTime}>{formatTime12h(meal.time)}</span>

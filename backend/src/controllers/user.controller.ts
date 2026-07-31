@@ -20,12 +20,29 @@ export const getUserById = catchAsync(async (req: AuthRequest, res: Response) =>
 });
 
 /**
+ * PATCH /api/users/me  (authenticated user updates own name/email)
+ */
+export const updateMe = catchAsync(async (req: AuthRequest, res: Response) => {
+  const { name, email } = req.body;
+  const user = await userService.updateMe(req.user!._id, { name, email });
+  res.status(200).json({ status: 'success', data: { user } });
+});
+
+/**
  * PUT /api/users/:id  (admin)
  */
 export const updateUser = catchAsync(async (req: AuthRequest, res: Response) => {
   const { name, role, profileComplete } = req.body;
   const user = await userService.updateUser(req.params.id as string, { name, role, profileComplete }, req.user!._id);
   res.status(200).json({ status: 'success', data: { user } });
+});
+
+/**
+ * DELETE /api/users/me  (authenticated user soft-deletes own account)
+ */
+export const deleteMe = catchAsync(async (req: AuthRequest, res: Response) => {
+  await userService.deleteMe(req.user!._id);
+  res.status(204).json({ status: 'success', data: null });
 });
 
 /**

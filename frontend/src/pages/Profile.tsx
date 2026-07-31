@@ -1,20 +1,28 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { Mail, Lock, Trash2, Pencil, Save } from "lucide-react"
+import { Link, useNavigate } from "react-router-dom"
+import { Mail, Lock, Trash2, Pencil, Save, X } from "lucide-react"
 import { Card, Input, Badge } from "../components/ui/primitives"
 import { Button } from "../components/ui/button"
 import { useAuth } from "../lib/auth-context"
-import { usersApi, healthProfileApi, type ApiHealthProfile } from "../lib/api"
+import { authApi, usersApi, healthProfileApi, type ApiHealthProfile } from "../lib/api"
 import styles from "./Profile.module.css"
 
 export default function Profile() {
   const { user, setUser, logout } = useAuth()
+  const navigate = useNavigate()
   const [profile, setProfile] = useState<ApiHealthProfile | null>(null)
   const [name, setName] = useState(user?.name ?? "")
-  const [email] = useState(user?.email ?? "")
+  const [email, setEmail] = useState(user?.email ?? "")
   const [saving, setSaving] = useState(false)
   const [saveMsg, setSaveMsg] = useState("")
   const [saveErr, setSaveErr] = useState("")
+  const [pwCurrent, setPwCurrent] = useState("")
+  const [pwNew, setPwNew] = useState("")
+  const [pwConfirm, setPwConfirm] = useState("")
+  const [pwOpen, setPwOpen] = useState(false)
+  const [pwSaving, setPwSaving] = useState(false)
+  const [pwMsg, setPwMsg] = useState("")
+  const [pwErr, setPwErr] = useState("")
   const [deleting, setDeleting] = useState(false)
 
   // Load health profile
@@ -30,7 +38,7 @@ export default function Profile() {
     setSaveMsg("")
     setSaveErr("")
     try {
-      const res = await usersApi.update(user!._id, { name })
+      const res = await usersApi.updateMe({ name, email })
       setUser(res.data.user)
       setSaveMsg("Changes saved successfully.")
     } catch (err: unknown) {
@@ -40,11 +48,30 @@ export default function Profile() {
     }
   }
 
+  async function changePasswordHandler(e: React.FormEvent) {
+    e.preventDefault()
+    setPwSaving(true)
+    setPwMsg("")
+    setPwErr("")
+    try {
+      await authApi.changePassword({ currentPassword: pwCurrent, newPassword: pwNew, confirmPassword: pwConfirm })
+      setPwMsg("Password updated successfully.")
+      setPwCurrent("")
+      setPwNew("")
+      setPwConfirm("")
+    } catch (err: unknown) {
+      setPwErr(err instanceof Error ? err.message : "Failed to update password.")
+    } finally {
+      setPwSaving(false)
+    }
+  }
+
   async function deleteAccount() {
     if (!confirm("Are you sure? This will permanently delete your account and all data.")) return
     setDeleting(true)
     try {
-      await usersApi.delete(user!._id)
+      await usersApi.deleteMe()
+      navigate("/", { replace: true })
       await logout()
     } catch {
       setDeleting(false)
@@ -105,8 +132,8 @@ export default function Profile() {
               label="Email address"
               type="email"
               value={email}
-              readOnly
-              disabled
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             {saveMsg && <p className={styles.successMsg}>{saveMsg}</p>}
             {saveErr && <p className={styles.errorMsg}>{saveErr}</p>}
@@ -115,7 +142,11 @@ export default function Profile() {
             </Button>
           </form>
           <div className={styles.divider}>
-            <Button variant="outline" className={styles.fullWidth} disabled>
+            <Button
+              variant="outline"
+              className={styles.fullWidth}
+              onClick={() => setPwOpen((o) => !o)}
+            >
               <Lock size={18} /> Change Password
             </Button>
           </div>
@@ -181,6 +212,54 @@ export default function Profile() {
           )}
         </Card>
       </div>
+
+      {/* Change Password modal */}
+      {pwOpen && (
+        <div className={styles.modalOverlay} onClick={() => setPwOpen(false)}>
+          <Card
+            style={{ width: "100%", maxWidth: "28rem", padding: "1.5rem" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h2 className={styles.modalTitle}>Change Password</h2>
+              <Button variant="ghost" size="icon" aria-label="Close" onClick={() => setPwOpen(false)}>
+                <X size={18} />
+              </Button>
+            </div>
+            <form onSubmit={changePasswordHandler} className={styles.settingsForm}>
+              <Input
+                id="p-current"
+                label="Current password"
+                type="password"
+                value={pwCurrent}
+                onChange={(e) => setPwCurrent(e.target.value)}
+                required
+              />
+              <Input
+                id="p-new"
+                label="New password"
+                type="password"
+                value={pwNew}
+                onChange={(e) => setPwNew(e.target.value)}
+                required
+              />
+              <Input
+                id="p-confirm"
+                label="Confirm new password"
+                type="password"
+                value={pwConfirm}
+                onChange={(e) => setPwConfirm(e.target.value)}
+                required
+              />
+              {pwMsg && <p className={styles.successMsg}>{pwMsg}</p>}
+              {pwErr && <p className={styles.errorMsg}>{pwErr}</p>}
+              <Button type="submit" variant="primary" disabled={pwSaving}>
+                <Lock size={18} /> {pwSaving ? "Updating..." : "Update Password"}
+              </Button>
+            </form>
+          </Card>
+        </div>
+      )}
     </div>
   )
 }

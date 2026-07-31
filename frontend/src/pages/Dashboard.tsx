@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Flame, UtensilsCrossed, Target, CalendarClock, User, Check, Wand2, Loader2, Salad } from "lucide-react"
+import { Flame, UtensilsCrossed, Target, CalendarClock, User, Check, Wand2, Loader2 } from "lucide-react"
 import { Card, Ring, Badge } from "../components/ui/primitives"
 import { Button } from "../components/ui/button"
+import MealImage from "../components/MealImage"
 import { mealPlansApi, healthProfileApi, type ApiMeal, type ApiMealPlan, type ApiHealthProfile } from "../lib/api"
 import { useAuth } from "../lib/auth-context"
 import { cn, toLocalDateString } from "../lib/utils"
@@ -15,6 +16,14 @@ const today = new Date().toLocaleDateString("en-US", {
 })
 
 const todayDateStr = toLocalDateString(new Date())
+
+function greetingForHour(h: number): string {
+  if (h < 5) return "Good Night"
+  if (h < 12) return "Good Morning"
+  if (h < 17) return "Good Afternoon"
+  if (h < 21) return "Good Evening"
+  return "Good Night"
+}
 
 type MealWithLocal = ApiMeal & { _localEaten?: boolean }
 
@@ -104,7 +113,7 @@ export default function Dashboard() {
   return (
     <div className={styles.page}>
       <div>
-        <h1 className={styles.title}>Good Morning, {firstName}</h1>
+        <h1 className={styles.title}>{greetingForHour(new Date().getHours())}, {firstName}!</h1>
         <p className={styles.date}>{today}</p>
       </div>
 
@@ -173,14 +182,7 @@ export default function Dashboard() {
           <div className={cn(styles.mealRow, "no-scrollbar")}>
             {meals.map((meal) => (
               <Card key={meal._id} className={cn(styles.mealCard, meal._localEaten && styles.mealCardEaten)}>
-                {meal.imgUrl ? (
-                  <img src={meal.imgUrl} alt={meal.name} className={styles.mealImg} />
-                ) : (
-                  <div className={styles.mealImgPlaceholder}>
-                    <Salad size={28} />
-                  </div>
-                )
-                }
+                <MealImage src={meal.imgUrl} alt={meal.name} type={meal.type} className={styles.mealImg} />
                 <div className={styles.mealBody}>
                   <div className={styles.mealTop}>
                     <Badge tone="primary">{meal.type}</Badge>

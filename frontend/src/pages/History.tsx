@@ -11,6 +11,7 @@ import {
 import { X } from "lucide-react"
 import { Card, Ring, Badge } from "../components/ui/primitives"
 import { Button } from "../components/ui/button"
+import MealImage from "../components/MealImage"
 import { mealPlansApi, type ApiMealPlan, type ApiMeal } from "../lib/api"
 import { cn, toLocalDateString } from "../lib/utils"
 import styles from "./History.module.css"
@@ -278,11 +279,7 @@ export default function History() {
               ) : (
                 selectedMeals.map((m) => (
                   <div key={m._id} className={styles.panelRow}>
-                    <img
-                      src={m.imgUrl || "/placeholder.svg"}
-                      alt={m.name}
-                      className={styles.panelImg}
-                    />
+                    <MealImage src={m.imgUrl} alt={m.name} type={m.type} className={styles.panelImg} />
                     <div className={styles.panelRowMain}>
                       <p className={styles.panelRowName}>{m.name}</p>
                       <p className={styles.panelRowMeta}>

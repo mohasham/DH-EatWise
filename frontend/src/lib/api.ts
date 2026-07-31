@@ -1,6 +1,7 @@
 // ─── Base fetch helper ────────────────────────────────────────────────────────
 
-const BASE = 'http://localhost:5000/api'
+// Set VITE_API_URL in frontend/.env to point at a deployed backend.
+const BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api'
 const TOKEN_KEY = 'eatwise_token'
 
 async function request<T>(
@@ -129,6 +130,12 @@ export const authApi = {
     request<{ status: string; message: string }>('/auth/logout', {
       method: 'POST',
     }),
+
+  changePassword: (data: { currentPassword: string; newPassword: string; confirmPassword: string }) =>
+    request<{ status: string; message: string }>('/auth/change-password', {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
 }
 
 // ─── Users ────────────────────────────────────────────────────────────────────
@@ -141,6 +148,14 @@ export const usersApi = {
 
   getById: (id: string) =>
     request<{ status: string; data: { user: ApiUser } }>(`/users/${id}`),
+
+  updateMe: (data: { name?: string; email?: string }) =>
+    request<{ status: string; data: { user: ApiUser } }>('/users/me', {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+
+  deleteMe: () => request<null>('/users/me', { method: 'DELETE' }),
 
   update: (
     id: string,

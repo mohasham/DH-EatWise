@@ -64,7 +64,6 @@ const userSchema = new Schema<IUser>(
 );
 
 // --- Indexes ---
-userSchema.index({ email: 1 });
 userSchema.index({ deletedAt: 1 });
 
 // --- Pre-save: hash password (Using standard async/await resolution) ---

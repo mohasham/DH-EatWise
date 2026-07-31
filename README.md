@@ -33,7 +33,7 @@ EatWise replaces static, one-size-fits-all meal suggestions with real AI generat
 - express-validator for request validation
 
 **Images**
-- Foodish API (real food photography by category) with Lorem Flickr
+- Whole-dish photos resolved via TheMealDB meal search (scored keyword matching) and Wikimedia Commons, with category fallback; local meal-type images as a final safety net
 
 ## Project Structure
 

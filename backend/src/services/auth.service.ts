@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import User, { IUser } from '../models/user.model';
 import AppError from '../utils/AppError';
 
@@ -10,6 +11,12 @@ interface RegisterInput {
 interface LoginInput {
   email: string;
   password: string;
+}
+
+interface ChangePasswordInput {
+  userId: Types.ObjectId;
+  currentPassword: string;
+  newPassword: string;
 }
 
 /**
@@ -44,4 +51,20 @@ export const loginUser = async (input: LoginInput): Promise<IUser> => {
   }
 
   return user;
+};
+
+/**
+ * Change a user's password after verifying their current one.
+ * The new password is hashed by the model's pre-save hook.
+ */
+export const changeUserPassword = async (input: ChangePasswordInput): Promise<void> => {
+  const user = await User.findById(input.userId).select('+password');
+  if (!user) throw new AppError('No user found with that ID', 404);
+
+  if (!(await user.comparePassword(input.currentPassword))) {
+    throw new AppError('Current password is incorrect', 401);
+  }
+
+  user.password = input.newPassword;
+  await user.save();
 };

@@ -20,6 +20,22 @@ export const updateUserValidator = [
   body('password').not().exists().withMessage('Use /api/auth/change-password to update password'),
 ];
 
+export const updateMeValidator = [
+  body('name')
+    .optional()
+    .trim()
+    .isLength({ min: 2, max: 100 }).withMessage('Name must be 2–100 characters'),
+
+  body('email')
+    .optional()
+    .trim()
+    .isEmail().withMessage('Please provide a valid email address'),
+
+  // Prevent role/password changes through this route
+  body('role').not().exists().withMessage('Role cannot be changed'),
+  body('password').not().exists().withMessage('Use /api/auth/change-password to update password'),
+];
+
 export const mongoIdParam = [
   param('id').isMongoId().withMessage('Invalid ID format'),
 ];
