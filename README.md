@@ -8,14 +8,14 @@ EatWise replaces static, one-size-fits-all meal suggestions with real AI generat
 
 ## Features
 
-- **Authentication** — register/login/logout with JWT (httpOnly cookie), role-based access (user/admin)
-- **Health Profile Setup** — 4-step wizard (basic info, health & diet, food preferences, daily schedule) that drives AI generation
-- **AI Meal Generation** — Groq-generated daily meal plans respecting calorie targets, allergies, forbidden foods, dietary preferences, and admin-defined dietary rules
-- **Recipes** — each meal includes a real ingredient list and distinct step-by-step cooking instructions
-- **Meal Tracking** — mark meals as eaten, track daily calorie consumption against target
-- **History** — weekly calorie trend chart (based on calories actually eaten, not just planned), monthly calendar view, completion rate
-- **Admin Dashboard** — user management, dietary rules management (create/edit/activate/deactivate), site overview stats
-- **Dietary Rules** — admin-authored rules (e.g. "no added sugar for diabetic users") that get factored into AI generation and can be selected by users during setup
+- **Authentication** - register/login/logout with JWT (httpOnly cookie), role-based access (user/admin)
+- **Health Profile Setup** - 4-step wizard (basic info, health & diet, food preferences, daily schedule) that drives AI generation
+- **AI Meal Generation** - Groq-generated daily meal plans respecting calorie targets, allergies, forbidden foods, dietary preferences, and admin-defined dietary rules
+- **Recipes** - each meal includes a real ingredient list and distinct step-by-step cooking instructions
+- **Meal Tracking** - mark meals as eaten, track daily calorie consumption against target
+- **History** - weekly calorie trend chart (based on calories actually eaten, not just planned), monthly calendar view, completion rate
+- **Admin Dashboard** - user management, dietary rules management (create/edit/activate/deactivate), site overview stats
+- **Dietary Rules** - admin-authored rules (e.g. "no added sugar for diabetic users") that get factored into AI generation and can be selected by users during setup
 
 ## Tech Stack
 
