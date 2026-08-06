@@ -6,6 +6,9 @@
   "scripts": {
     "build": "cd frontend && npm install --no-audit --no-fund && npm run build"
   },
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "dependencies": {
     "@ai-sdk/groq": "^4.0.7",
     "ai": "^7.0.20",
