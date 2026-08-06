@@ -21,6 +21,22 @@
   gap: 1rem;
 }
 
+@media (max-width: 639px) {
+  .statsGrid {
+    justify-items: center;
+  }
+
+  .ringCard,
+  .statCard {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .statCard {
+    align-items: center;
+  }
+}
+
 .ringCard {
   display: flex;
   flex-direction: column;
@@ -109,6 +125,10 @@
   text-decoration: underline;
 }
 
+.quickLinks {
+  display: none;
+}
+
 .quickTitle {
   margin-bottom: 1rem;
   font-size: 1.125rem;
@@ -118,16 +138,15 @@
 /* ---------------- Meal cards row ---------------- */
 .mealRow {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  overflow-x: auto;
   padding: 0.25rem;
   margin: -0.25rem;
   padding-bottom: 0.75rem;
 }
 
 .mealCard {
-  width: 15rem;
-  flex-shrink: 0;
+  width: 100%;
   overflow: hidden;
   transition: box-shadow 0.15s ease;
 }
@@ -210,6 +229,28 @@
   border-color: var(--color-success);
 }
 
+@media (max-width: 639px) {
+  .mealCard {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .mealImg {
+    width: 6rem;
+    height: 6rem;
+    aspect-ratio: auto;
+    border-radius: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .mealBody {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+  }
+}
+
 /* ---------------- Quick links ---------------- */
 .linksGrid {
   display: grid;
@@ -249,10 +290,24 @@
   .linksGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .mealRow {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .mealCard {
+    width: 15rem;
+    flex-shrink: 0;
+  }
 }
 
 @media (min-width: 1024px) {
   .statsGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .quickLinks {
+    display: block;
   }
 }

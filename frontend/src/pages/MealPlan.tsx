@@ -235,21 +235,21 @@ export default function MealPlan() {
                       <p className={styles.mealCal}>
                         {meal.calories} <span className={styles.mealCalUnit}>kcal</span>
                       </p>
-                      <div className={styles.mealActions}>
-                        <button
-                          onClick={() => setExpanded(expanded === meal._id ? null : meal._id)}
-                          className={styles.recipeToggle}
-                        >
-                          Recipe &amp; ingredients
-                          <ChevronDown size={15} className={cn(styles.chevron, expanded === meal._id && styles.chevronOpen)} />
-                        </button>
-                        <button
-                          onClick={() => toggleMeal(meal)}
-                          className={cn(styles.eatBtn, meal.completed && styles.eatBtnEaten)}
-                        >
-                          <Check size={15} /> {meal.completed ? "Eaten" : "Mark as Eaten"}
-                        </button>
-                      </div>
+                    </div>
+                    <div className={styles.mealActions}>
+                      <button
+                        onClick={() => setExpanded(expanded === meal._id ? null : meal._id)}
+                        className={styles.recipeToggle}
+                      >
+                        Recipe &amp; ingredients
+                        <ChevronDown size={15} className={cn(styles.chevron, expanded === meal._id && styles.chevronOpen)} />
+                      </button>
+                      <button
+                        onClick={() => toggleMeal(meal)}
+                        className={cn(styles.eatBtn, meal.completed && styles.eatBtnEaten)}
+                      >
+                        <Check size={15} /> {meal.completed ? "Eaten" : "Mark as Eaten"}
+                      </button>
                     </div>
                   </div>
                   {expanded === meal._id && (

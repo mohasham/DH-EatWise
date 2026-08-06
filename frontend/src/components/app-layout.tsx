@@ -63,6 +63,20 @@ export function AppLayout() {
         </div>
       </aside>
 
+      {/* Mobile top bar */}
+      <header className={styles.topbar}>
+        <Link to="/" aria-label="Go to homepage">
+          <Logo />
+        </Link>
+        <button
+          onClick={handleLogout}
+          className={styles.topbarLogout}
+          aria-label="Log out"
+        >
+          <LogOut size={20} />
+        </button>
+      </header>
+
       {/* Main content */}
       <main className={styles.main}>
         <div className={styles.container}>

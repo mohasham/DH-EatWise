@@ -209,7 +209,7 @@ export default function Dashboard() {
       </section>
 
       {/* Quick links */}
-      <section>
+      <section className={styles.quickLinks}>
         <h2 className={styles.quickTitle}>Quick Links</h2>
         <div className={styles.linksGrid}>
           {[

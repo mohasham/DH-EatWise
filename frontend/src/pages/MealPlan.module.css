@@ -73,6 +73,7 @@
 }
 .mealInner {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
 }
@@ -280,5 +281,14 @@
   .mealImg {
     height: 7rem;
     width: 7rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .mealActions {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
   }
 }
