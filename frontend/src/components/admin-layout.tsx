@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { NavLink, Outlet } from "react-router-dom"
-import { LayoutDashboard, Users, ScrollText, Menu, X } from "lucide-react"
+import { NavLink, Outlet, useNavigate } from "react-router-dom"
+import { LayoutDashboard, Users, ScrollText, Menu, X, LogOut, ExternalLink } from "lucide-react"
 import { Logo } from "../components/logo"
+import { useAuth } from "../lib/auth-context"
 import { cn } from "../lib/utils"
 import styles from "./admin-layout.module.css"
 
@@ -13,12 +14,33 @@ const nav = [
 
 export function AdminLayout() {
   const [open, setOpen] = useState(false)
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+
+  async function handleLogout() {
+    await logout()
+    navigate("/login")
+  }
+
+  function handleViewSite() {
+    navigate("/")
+    setOpen(false)
+  }
+
+  const initials = (user?.name ?? "?")
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2)
 
   const SidebarContent = (
     <div className={styles.sidebarBody}>
       <div className={styles.logoWrap}>
         <Logo onDark />
       </div>
+
+      {/* Nav links */}
       <nav className={styles.nav}>
         {nav.map(({ to, label, icon: Icon }) => (
           <NavLink
@@ -33,7 +55,32 @@ export function AdminLayout() {
             {label}
           </NavLink>
         ))}
+
+        {/* View Site button — same style as nav links */}
+        <button
+          onClick={handleViewSite}
+          className={cn(styles.navLink, styles.viewSiteBtn)}
+        >
+          <ExternalLink size={20} />
+          View Site
+        </button>
       </nav>
+
+      {/* User card — same pattern as AppLayout */}
+      <div className={styles.userCard}>
+        <div className={styles.avatar}>{initials}</div>
+        <div className={styles.userInfo}>
+          <p className={styles.userName}>{user?.name}</p>
+          <p className={styles.userEmail}>{user?.email}</p>
+        </div>
+        <button
+          onClick={handleLogout}
+          className={styles.logoutBtn}
+          aria-label="Log out"
+        >
+          <LogOut size={16} />
+        </button>
+      </div>
     </div>
   )
 

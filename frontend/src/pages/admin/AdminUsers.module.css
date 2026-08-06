@@ -1,326 +1,350 @@
 .page {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.025em;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
 }
 
 @media (min-width: 640px) {
-    .title {
-        font-size: 1.875rem;
-    }
+  .title {
+    font-size: 1.875rem;
+  }
 }
 
 .subtitle {
-    margin-top: 0.25rem;
-    color: var(--color-muted-foreground);
+  margin-top: 0.25rem;
+  color: var(--color-muted-foreground);
 }
 
-/* Search + filter row */
+/* ── Search + filter row ── */
 .toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .searchWrap {
-    position: relative;
-    flex: 1 1 0%;
-    min-width: 14rem;
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 14rem;
 }
 
 .searchIcon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-muted-foreground);
 }
 
 .searchInput {
-    height: 2.75rem;
-    width: 100%;
-    border-radius: 9999px;
-    border: 1px solid #e5e7eb;
-    background-color: #ffffff;
-    padding-left: 2.5rem;
-    padding-right: 1rem;
-    font-size: 0.875rem;
-    outline: none;
-    color: #1f2937;
+  height: 2.75rem;
+  width: 100%;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+  font-size: 0.875rem;
+  outline: none;
+  color: var(--color-foreground);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .searchInput:focus {
-    border-color: #0b664d;
-    box-shadow: 0 0 0 2px rgba(11, 102, 77, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 15%, transparent);
 }
 
 .roleButtons {
-    display: flex;
-    gap: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .capitalize {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
-/* Table card */
+/* ── Table card ── */
 .sectionCard {
-    overflow: hidden;
+  overflow: hidden;
+}
+
+.cardHead {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.25rem;
+}
+
+.cardTitle {
+  font-weight: 700;
 }
 
 .tableWrap {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .table {
-    width: 100%;
-    font-size: 0.875rem;
-    border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
 }
 
 .tableHeadRow {
-    border-bottom: 1px solid var(--border);
-    text-align: left;
-    color: var(--color-muted-foreground);
-    background-color: rgb(241, 241, 241);
-
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  color: var(--color-muted-foreground);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .tableHeadCell {
-    padding: 0.75rem 1.25rem;
-    font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
 }
 
 .tableRow {
-    border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .tableRow:last-child {
-    border-bottom: 0;
+  border-bottom: 0;
 }
 
 .tableCell {
-    padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
 }
 
 .tableCellMuted {
-    padding: 0.75rem 1.25rem;
-    color: var(--muted-foreground);
+  padding: 0.75rem 1.25rem;
+  color: var(--color-muted-foreground);
 }
 
 .emptyCell {
-    padding: 2.5rem 1.25rem;
-    text-align: center;
-    color: var(--muted-foreground);
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  color: var(--color-muted-foreground);
 }
 
+/* ── User cell ── */
 .userCell {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .avatar {
-    display: flex;
-    height: 2.5rem;
-    width: 2.5rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    background-color: #0b664d;
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #ffffff;
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary-foreground);
 }
 
 .userName {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .userEmail {
-    font-size: 0.75rem;
-    color: var(--muted-foreground);
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
 }
 
 .rowActions {
-    display: flex;
-    gap: 0.25rem;
+  display: flex;
+  gap: 0.25rem;
 }
 
 .destructiveIcon {
-    color: #dc2626;
-    transition: color 0.2s ease;
+  color: var(--color-destructive, #dc2626);
+  transition: color 0.2s ease;
 }
 
 .destructiveIcon:hover {
-    color: #991b1b;
+  color: #991b1b;
 }
 
-/* Detail panel (slide-over) */
+/* ── Detail panel (slide-over) ── */
 .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    display: flex;
-    justify-content: flex-end;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .overlayBackdrop {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    transition: opacity 0.2s ease-in-out;
+  position: fixed;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity 0.2s ease-in-out;
 }
 
 .panel {
-    position: relative;
-    isolation: isolate;
-    display: flex;
-    height: 100%;
-    width: 100%;
-    max-width: 28rem;
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
-    box-sizing: border-box;
-    background-color: var(--card, #ffffff);
-    padding: 1.5rem;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  max-width: 28rem;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: var(--color-card);
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .panelHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1rem;
 }
 
 .panelTitle {
-    padding-top: 1rem;
-    font-size: 1.125rem;
-    font-weight: 700;
-
+  font-size: 1.125rem;
+  font-weight: 700;
 }
 
 .panelProfile {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .avatarLg {
-    display: flex;
-    height: 3.5rem;
-    width: 3.5rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    background-color: #0b664d;
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #ffffff;
+  display: flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary-foreground);
 }
 
 .panelName {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .panelEmail {
-    font-size: 0.875rem;
-    color: var(--muted-foreground);
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
 }
 
+/* ── Panel sections ── */
 .sectionLabel {
-    margin-top: 1.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--muted-foreground);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted-foreground);
 }
 
 .statGrid {
-    margin-top: 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
 .statBox {
-    border-radius: 1rem;
-    border: 1px solid #e5e7eb;
-    padding: 1rem;
-    background-color: #ffffff;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  background-color: var(--color-background);
 }
 
 .statBoxLabel {
-    font-size: 0.75rem;
-    color: #6b7280;
-    margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+  margin-bottom: 0.25rem;
 }
 
 .statBoxValue {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #1f2937;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-foreground);
 }
 
+/* ── Meal list ── */
 .mealList {
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .mealRow {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    border-radius: 1rem;
-    border: 1px solid #e5e7eb;
-    padding: 0.75rem 1rem;
-    background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+  background-color: var(--color-background);
 }
 
 .mealImage {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 0.75rem;
-    object-fit: cover;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .mealInfo {
-    min-width: 0;
-    flex: 1 1 0%;
+  min-width: 0;
+  flex: 1 1 0%;
 }
 
 .mealName {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #1f2937;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-foreground);
 }
 
 .mealType {
-    font-size: 0.75rem;
-    color: #6b7280;
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
 }
 
 .mealCalories {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #0b664d;
-    margin-left: auto;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
+/* ── Panel actions ── */
 .panelActions {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 0.5rem;
 }

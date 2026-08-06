@@ -45,3 +45,28 @@
   background: color-mix(in srgb, var(--color-destructive, #ef4444) 10%, transparent);
   border-radius: var(--radius, 0.5rem);
 }
+
+/* ── Password field with eye toggle ── */
+.passwordWrap {
+  position: relative;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 0.875rem;
+  bottom: 0.65rem;  /* ← anchor to bottom of the wrapper instead of center */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted-foreground);
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  transition: color 0.15s ease;
+}
+
+.eyeBtn:hover {
+  color: var(--color-foreground);
+}
