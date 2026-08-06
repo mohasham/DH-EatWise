@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom"
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
 import { LayoutDashboard, UtensilsCrossed, CalendarClock, User, LogOut } from "lucide-react"
 import { Logo } from "../components/logo"
 import { useAuth } from "../lib/auth-context"
@@ -33,7 +33,9 @@ export function AppLayout() {
       {/* Desktop sidebar */}
       <aside className={styles.sidebar}>
         <div className={styles.logoWrap}>
-          <Logo />
+          <Link to="/" aria-label="Go to homepage">
+            <Logo />
+          </Link>
         </div>
         <nav className={styles.nav}>
           {nav.map(({ to, label, icon: Icon }) => (

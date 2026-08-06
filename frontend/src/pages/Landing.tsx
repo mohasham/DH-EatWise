@@ -12,6 +12,7 @@ import {
 import { Logo } from "../components/logo"
 import { Button } from "../components/ui/button"
 import { Card, Badge } from "../components/ui/primitives"
+import { useAuth } from "../lib/auth-context"
 import { todaysMeals } from "../lib/mock-data"
 import styles from "./Landing.module.css"
 
@@ -45,6 +46,17 @@ const steps = [
 ]
 
 export default function Landing() {
+  const { user } = useAuth()
+
+  const initials = (user?.name ?? "")
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2)
+
+  const dashboardPath = user?.role === "admin" ? "/admin/dashboard" : "/dashboard"
+
   return (
     <div className={styles.page}>
       {/* Navbar */}
@@ -52,12 +64,21 @@ export default function Landing() {
         <div className={styles.navInner}>
           <Logo />
           <div className={styles.navActions}>
-            <Link to="/login">
-              <Button variant="ghost" size="sm">Login</Button>
-            </Link>
-            <Link to="/register">
-              <Button variant="accent" size="sm">Get Started</Button>
-            </Link>
+            {user ? (
+              <Link to={dashboardPath} className={styles.userChip} aria-label="Go to your dashboard">
+                <span className={styles.avatar}>{initials}</span>
+                <span className={styles.chipName}>{user.name}</span>
+              </Link>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="ghost" size="sm">Login</Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="accent" size="sm">Get Started</Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </header>

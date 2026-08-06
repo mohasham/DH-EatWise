@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { NavLink, Outlet, useNavigate } from "react-router-dom"
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
 import { LayoutDashboard, Users, ScrollText, Menu, X, LogOut, ExternalLink } from "lucide-react"
 import { Logo } from "../components/logo"
 import { useAuth } from "../lib/auth-context"
@@ -37,7 +37,9 @@ export function AdminLayout() {
   const SidebarContent = (
     <div className={styles.sidebarBody}>
       <div className={styles.logoWrap}>
-        <Logo onDark />
+        <Link to="/" aria-label="Go to homepage">
+          <Logo onDark />
+        </Link>
       </div>
 
       {/* Nav links */}
@@ -98,7 +100,9 @@ export function AdminLayout() {
         >
           <Menu size={24} />
         </button>
-        <Logo onDark />
+        <Link to="/" aria-label="Go to homepage">
+          <Logo onDark />
+        </Link>
       </header>
 
       {/* Mobile drawer */}

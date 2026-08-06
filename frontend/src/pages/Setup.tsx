@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {
   Mars,
   Venus,
@@ -358,7 +358,9 @@ export default function Setup() {
     <div className={styles.page}>
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <Logo />
+          <Link to="/" aria-label="Go to homepage">
+            <Logo />
+          </Link>
           <span className={styles.headerStep}>Step {step} of {total}</span>
         </div>
       </header>
