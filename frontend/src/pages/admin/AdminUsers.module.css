@@ -95,20 +95,6 @@
   border-collapse: collapse;
 }
 
-.tableHeadRow {
-  border-bottom: 1px solid var(--color-border);
-  text-align: left;
-  color: var(--color-muted-foreground);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.tableHeadCell {
-  padding: 0.75rem 1.25rem;
-  font-weight: 500;
-}
-
 .tableRow {
   border-bottom: 1px solid var(--color-border);
 }
@@ -347,4 +333,73 @@
   border-top: 1px solid var(--color-border);
   display: flex;
   gap: 0.5rem;
+}
+
+/* ── Mobile: table → stacked cards ── */
+@media (max-width: 639px) {
+  .tableWrap {
+    overflow-x: visible;
+    padding: 0.5rem;
+  }
+
+  .table,
+  .table tbody,
+  .table tr {
+    display: block;
+  }
+
+  .tableRow {
+    margin-bottom: 0.5rem;
+    padding: 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+  }
+
+  .tableRow:last-child {
+    margin-bottom: 0;
+  }
+
+  .tableCell,
+  .tableCellMuted {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    min-width: 0;
+  }
+
+  .tableCell > *,
+  .tableCellMuted > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .tableCell::before,
+  .tableCellMuted::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted-foreground);
+  }
+
+  .tableCell:first-child {
+    display: block;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tableCell:first-child::before {
+    display: none;
+  }
+
+  .avatar {
+    height: 2.25rem;
+    width: 2.25rem;
+  }
 }

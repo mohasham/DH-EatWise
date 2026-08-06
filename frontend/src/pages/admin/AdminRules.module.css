@@ -82,24 +82,6 @@
   border-collapse: collapse;
 }
 
-.thead {
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-muted-foreground);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.th {
-  padding: 0.75rem 1.25rem;
-  font-weight: 500;
-}
-
-.thRight,
-.tdRight {
-  text-align: right;
-}
-
 .tr {
   border-bottom: 1px solid var(--color-border);
 }
@@ -272,4 +254,66 @@
   padding: 0.5rem 0.75rem;
   background: color-mix(in srgb, var(--color-destructive, #ef4444) 10%, transparent);
   border-radius: 0.5rem;
+}
+
+/* ── Mobile: table → stacked cards ── */
+@media (max-width: 639px) {
+  .tableWrapper {
+    overflow-x: visible;
+    padding: 0.5rem;
+  }
+
+  .table,
+  .table tbody,
+  .table tr {
+    display: block;
+  }
+
+  .tr {
+    margin-bottom: 0.5rem;
+    padding: 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+  }
+
+  .tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    min-width: 0;
+  }
+
+  .td > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted-foreground);
+  }
+
+  .tdDescription:first-child {
+    display: block;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    max-width: none;
+  }
+
+  .tdDescription:first-child::before {
+    display: none;
+  }
 }

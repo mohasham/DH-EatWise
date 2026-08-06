@@ -117,29 +117,20 @@ export default function AdminRules() {
         <Card style={{ overflow: "hidden", padding: 0 }}>
           <div className={styles.tableWrapper}>
             <table className={styles.table}>
-              <thead className={styles.thead}>
-                <tr>
-                  <th className={styles.th}>Description</th>
-                  <th className={styles.th}>Status</th>
-                  <th className={styles.th}>Added By</th>
-                  <th className={styles.th}>Date</th>
-                  <th className={`${styles.th} ${styles.thRight}`}>Actions</th>
-                </tr>
-              </thead>
               <tbody>
                 {rules.map((r) => (
                   <tr key={r._id} className={styles.tr}>
-                    <td className={`${styles.td} ${styles.tdDescription}`}>{r.description}</td>
-                    <td className={styles.td}>
+                    <td className={`${styles.td} ${styles.tdDescription}`} data-label="Description">{r.description}</td>
+                    <td className={styles.td} data-label="Status">
                       <Badge tone={r.isActive ? "success" : "muted"}>{r.isActive ? "Active" : "Inactive"}</Badge>
                     </td>
-                    <td className={`${styles.td} ${styles.textMuted}`}>{addedByName(r)}</td>
-                    <td className={`${styles.td} ${styles.textMuted}`}>
+                    <td className={`${styles.td} ${styles.textMuted}`} data-label="Added By">{addedByName(r)}</td>
+                    <td className={`${styles.td} ${styles.textMuted}`} data-label="Date">
                       {new Date(r.createdAt).toLocaleDateString("en-US", {
                         month: "short", day: "numeric", year: "numeric",
                       })}
                     </td>
-                    <td className={styles.td}>
+                    <td className={styles.td} data-label="Actions">
                       <div className={styles.actionGroup}>
                         <Button variant="ghost" size="sm" onClick={() => toggle(r._id, r.isActive)}>
                           {r.isActive ? "Deactivate" : "Activate"}

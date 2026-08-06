@@ -84,29 +84,20 @@ export default function AdminDashboard() {
         </div>
         <div className={styles.tableWrap}>
           <table className={styles.table}>
-            <thead>
-              <tr className={styles.headRow}>
-                <th className={styles.th}>Name</th>
-                <th className={styles.th}>Email</th>
-                <th className={styles.th}>Joined</th>
-                <th className={styles.th}>Profile</th>
-                <th className={styles.th}>Role</th>
-              </tr>
-            </thead>
             <tbody>
               {recentUsers.map((u) => (
                 <tr key={u._id} className={styles.bodyRow}>
-                  <td className={styles.tdName}>{u.name}</td>
-                  <td className={styles.tdMuted}>{u.email}</td>
-                  <td className={styles.tdMuted}>
+                  <td className={styles.tdName} data-label="Name">{u.name}</td>
+                  <td className={styles.tdMuted} data-label="Email">{u.email}</td>
+                  <td className={styles.tdMuted} data-label="Joined">
                     {new Date(u.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                   </td>
-                  <td className={styles.td}>
+                  <td className={styles.td} data-label="Profile">
                     <Badge tone={u.profileComplete ? "success" : "neutral"}>
                       {u.profileComplete ? "Complete" : "Incomplete"}
                     </Badge>
                   </td>
-                  <td className={styles.td}>
+                  <td className={styles.td} data-label="Role">
                     <Badge tone={u.role === "admin" ? "accent" : "primary"}>{u.role}</Badge>
                   </td>
                 </tr>

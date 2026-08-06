@@ -88,21 +88,12 @@ export default function AdminUsers() {
       <Card className={styles.sectionCard}>
         <div className={styles.tableWrap}>
           <table className={styles.table}>
-            <thead>
-              <tr className={styles.tableHeadRow}>
-                <th className={styles.tableHeadCell}>User</th>
-                <th className={styles.tableHeadCell}>Role</th>
-                <th className={styles.tableHeadCell}>Profile</th>
-                <th className={styles.tableHeadCell}>Joined</th>
-                <th className={styles.tableHeadCell}>Actions</th>
-              </tr>
-            </thead>
             <tbody>
               {loading ? (
                 <tr><td colSpan={5} className={styles.emptyCell}>Loading users...</td></tr>
               ) : filtered.map((u) => (
                 <tr key={u._id} className={styles.tableRow}>
-                  <td className={styles.tableCell}>
+                  <td className={styles.tableCell} data-label="User">
                     <div className={styles.userCell}>
                       <div className={styles.avatar}>
                         {u.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)}
@@ -113,18 +104,18 @@ export default function AdminUsers() {
                       </div>
                     </div>
                   </td>
-                  <td className={styles.tableCell}>
+                  <td className={styles.tableCell} data-label="Role">
                     <Badge tone={u.role === "admin" ? "accent" : "primary"} className={styles.capitalize}>{u.role}</Badge>
                   </td>
-                  <td className={styles.tableCell}>
+                  <td className={styles.tableCell} data-label="Profile">
                     <Badge tone={u.profileComplete ? "success" : "neutral"}>
                       {u.profileComplete ? "Complete" : "Incomplete"}
                     </Badge>
                   </td>
-                  <td className={styles.tableCellMuted}>
+                  <td className={styles.tableCellMuted} data-label="Joined">
                     {new Date(u.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                   </td>
-                  <td className={styles.tableCell}>
+                  <td className={styles.tableCell} data-label="Actions">
                     <div className={styles.rowActions}>
                       <Button variant="ghost" size="sm" onClick={() => openUser(u)}>View</Button>
                       <Button

@@ -24,7 +24,9 @@
 .statCard {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
+  text-align: center;
   padding: 1.5rem;
 }
 
@@ -76,18 +78,6 @@
 .table {
   width: 100%;
   font-size: 0.875rem;
-}
-
-.headRow {
-  border-bottom: 1px solid var(--color-border);
-  text-align: left;
-  color: var(--color-muted-foreground);
-  
-}
-
-.th {
-  padding: 0.75rem 1.25rem;
-  font-weight: 500;
 }
 
 .bodyRow {
@@ -178,5 +168,73 @@
 @media (min-width: 1024px) {
   .statsGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ── Mobile: table → stacked cards ── */
+@media (max-width: 639px) {
+  .tableWrap {
+    overflow-x: visible;
+    padding: 0.5rem;
+  }
+
+  .table,
+  .table tbody,
+  .table tr {
+    display: block;
+  }
+
+  .bodyRow {
+    margin-bottom: 0.5rem;
+    padding: 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+  }
+
+  .bodyRow:last-child {
+    margin-bottom: 0;
+  }
+
+  .td,
+  .tdName,
+  .tdMuted {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    min-width: 0;
+  }
+
+  .td > *,
+  .tdName > *,
+  .tdMuted > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .td::before,
+  .tdName::before,
+  .tdMuted::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted-foreground);
+  }
+
+  .tdName:first-child {
+    display: block;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9375rem;
+  }
+
+  .tdName:first-child::before {
+    display: none;
   }
 }
