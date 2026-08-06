@@ -12,3 +12,6 @@ backend/dist/
 frontend/dist/
 .next/
 .DS_Store
+
+# Vercel CLI local config
+.vercel/

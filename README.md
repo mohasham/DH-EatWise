@@ -113,7 +113,6 @@ Open the printed local URL (typically `http://localhost:5173`).
 3. Go to **Meal Plan** and click **Generate Plan**
 4. As admin, visit **Admin → Rules** to add dietary rules, and **Admin → Users** to manage accounts
 
-
 ## API Overview
 
 | Method | Endpoint | Description |

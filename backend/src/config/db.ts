@@ -30,7 +30,7 @@ const connectDB = async (): Promise<void> => {
     console.log(`[DB] MongoDB Atlas connected: ${conn.connection.host}`);
   } catch (error) {
     console.error('[DB] MongoDB Atlas connection error:', error);
-    process.exit(1);
+    throw error;
   }
 };
 
