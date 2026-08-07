@@ -47,6 +47,49 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Force light mode even when the user/browser prefers dark */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+
+    --color-background: #f8f7f2;
+    --color-foreground: #1a1a18;
+
+    --color-card: #ffffff;
+    --color-card-foreground: #1a1a18;
+
+    --color-popover: #ffffff;
+    --color-popover-foreground: #1a1a18;
+
+    --color-primary: #0f6e56;
+    --color-primary-foreground: #ffffff;
+
+    --color-accent: #e8a838;
+    --color-accent-foreground: #1a1a18;
+
+    --color-secondary: #eef2ef;
+    --color-secondary-foreground: #0f6e56;
+
+    --color-muted: #eef0ea;
+    --color-muted-foreground: #6b6a63;
+
+    --color-success: #3dab7a;
+    --color-success-foreground: #ffffff;
+
+    --color-destructive: #d85a30;
+    --color-destructive-foreground: #ffffff;
+
+    --color-border: #e7e5dc;
+    --color-input: #e7e5dc;
+    --color-ring: #0f6e56;
+
+    --color-sidebar: #0f6e56;
+    --color-sidebar-foreground: #eaf3ef;
+    --color-sidebar-accent: #0b5844;
+    --color-sidebar-border: #1a7d63;
+  }
+}
+
 /* ---------------- Reset ---------------- */
 *,
 *::before,
@@ -66,6 +109,7 @@ html {
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   tab-size: 4;
+  background-color: var(--color-background);
 }
 
 body {
