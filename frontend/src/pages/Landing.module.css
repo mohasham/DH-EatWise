@@ -353,6 +353,15 @@
   color: var(--color-muted-foreground);
 }
 
+@media (max-width: 639px) {
+  .featureCard {
+    text-align: center;
+  }
+  .featureIcon {
+    margin-inline: auto;
+  }
+}
+
 @media (min-width: 640px) {
   .navInner {
     padding-inline: 1.5rem;
