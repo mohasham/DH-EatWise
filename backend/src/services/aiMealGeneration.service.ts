@@ -1,5 +1,3 @@
-import { generateObject } from 'ai';
-import { groq } from '@ai-sdk/groq';
 import { z } from 'zod';
 import { Types } from 'mongoose';
 import HealthProfile from '../models/healthProfile.model';
@@ -33,6 +31,9 @@ export const generateMealsForPlan = async (
   userId: Types.ObjectId,
   isAdmin: boolean
 ): Promise<void> => {
+  const { generateObject } = await import('ai');
+  const { groq } = await import('@ai-sdk/groq');
+
   if (!Types.ObjectId.isValid(planId)) throw new AppError('Invalid meal plan ID', 400);
 
   const filter: Record<string, unknown> = { _id: planId, deletedAt: null };
